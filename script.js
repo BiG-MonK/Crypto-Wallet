@@ -8,7 +8,8 @@ $.getJSON("https://api.coinmarketcap.com/v1/ticker/?limit=10", function(json) {
     var keys = Object.keys(val);
     html += "<div class = 'cat'>";
     keys.forEach(function(key) {
-      html += "<strong>" + key + "</strong>: " + val[key] + "<br>";
+      if (key == 'id'){
+      html += "<strong>" + key + "</strong>: " + val[key] + "<br>";}
     });
     html += "</div><br>";
   });
