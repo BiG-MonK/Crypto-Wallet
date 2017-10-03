@@ -9,7 +9,9 @@ $.getJSON("https://api.coinmarketcap.com/v1/ticker/?limit=10", function(json) {
     html += "<div class = 'crypto'>";
     keys.forEach(function(key) {
       if (key == 'id'){
-      html += "<strong>" + key + "</strong>: " + val[key] + "<br>";}
+      html += "<strong>" + val[key] + "</strong>: " + "<br>";}
+      if (key == 'price_usd'){
+      html += "<strong>" + val[key] + "</strong>: " + "<br>";}
     });
     html += "</div><br>";
   });
