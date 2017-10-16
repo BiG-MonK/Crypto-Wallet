@@ -1,3 +1,6 @@
+var myCoin {
+  
+}
 // ------------ Bitcoin BTC --------------------
 $.getJSON("https://api.coinmarketcap.com/v1/ticker/bitcoin/", function(json) { // ------------ Bitcoin BTC -------------------
   var html = "";
