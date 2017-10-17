@@ -1,24 +1,21 @@
 <!DOCTYPE html>
 <html>
 <head>
-   <meta charset="utf-8">
-   <meta http-equiv="Refresh" content="300" />  <!-- Обновление страницы каждые 5 минут-->
-   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-   <link rel="stylesheet" href="myStyle.css" type="text/css"/>
-   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-   <script>document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')</script>
-   <title>Crypto-Wallet</title>
+ <meta charset="utf-8">
+ <meta http-equiv="Refresh" content="300" />  <!-- Обновление страницы каждые 5 минут-->
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+ <link rel="stylesheet" href="myStyle.css" type="text/css"/>
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+ <script>document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')</script>
+ <title>Crypto-Wallet</title>
 
 </head>
 <body>
     <h1>OutPut</h1>
+    <div class="time"></div>
     <div class="container-fluid">
         <div class="row">
-            <div class="col-xs-4">
-                <div class="coin USD"></div>
-                <div class="coin EUR"></div>
-            </div>
-            <div class="col-xs-8">
+            <div class="col-xs-3">
                 <div class="coin bitcoin"><p class="btc"></p></div>
                 <div class="coin monero"></div>
                 <div class="coin zclassic"></div>
@@ -26,6 +23,15 @@
                 <div class="coin zcash"></div>
                 <div class="coin digibyte"></div>
                 <div class="coin ripple"></div>
+            </div>
+            <div class="col-xs-7">
+                <div class="mining zcash"></div>
+                <div class="mining monero"></div>
+                <div class="mining library"></div>
+            </div>
+            <div class="col-xs-2">
+                <div class="coin USD"></div>
+                <div class="coin EUR"></div>
             </div>
         </div>
     </div>
