@@ -15,8 +15,6 @@ window.onload = function(){
     $(".mining.zcash").html(zecUsd * coinMining.bittrex.zec);
     window.setTimeout(arguments.callee, 1000);
 })();
-
-
 };
 
 //-----------------  Объект хранящий все имеющиеся криптовалюты от майнинга на сейчас
@@ -42,15 +40,16 @@ var coinMining = {
     zec : 0,
     xmr : 0.0337
   },
-  fiat : 6652.93
+  fiat : 6652.93,
+  dateIns : "18.10.2017 11:00"
 };
 
 // ------------ Bitcoin BTC --------------------
 $.getJSON("https://api.coinmarketcap.com/v1/ticker/bitcoin/", function(json) { // ------------ Bitcoin BTC -------------------
-  var html = "";
+  var html = $(".coin.bitcoin").html();
   secUpdateGL = json[0].last_updated;
   btcUsd = json[0].price_usd;
-  html = "<strong> Rank: " + json[0].rank + "</strong>: " + "<br>";
+  html += "<strong> Rank: " + json[0].rank + "</strong>: " + "<br>";
   html += "<strong>" + json[0].name + " ("+ json[0].symbol + ")" + "</strong>: " + "<br>";
   html += "<strong>" + json[0].price_usd + " USD</strong> " + "<br>";
   html += "<strong>" + json[0].price_btc + " BTC</strong> " + "<br>";
@@ -62,9 +61,9 @@ $.getJSON("https://api.coinmarketcap.com/v1/ticker/bitcoin/", function(json) { /
 }); 
 
 $.getJSON("https://api.coinmarketcap.com/v1/ticker/zcash/", function(json) { // ------------ Zcash ZEC -------------------
-  var html = "";
+  var html = $(".coin.zcash").html();
   zecUsd = json[0].price_usd;
-  html = "<strong> Rank: " + json[0].rank + "</strong>: " + "<br>";
+  html += "<strong> Rank: " + json[0].rank + "</strong>: " + "<br>";
   html += "<strong>" + json[0].name + " ("+ json[0].symbol + ")" + "</strong>: " + "<br>";
   html += "<strong>" + json[0].price_usd + " USD</strong> " + "<br>";
   html += "<strong>" + json[0].price_btc + " BTC</strong> " + "<br>";
