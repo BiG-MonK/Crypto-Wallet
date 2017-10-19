@@ -12,8 +12,13 @@ window.onload = function(){
     secLast = secLast - (minLast * 60);                // Остатки секунд после вычета минут
     time += "<strong>Данные устарели на: " + minLast + ":" + secLast + "</strong> " + "<br>";
     $(".time").html(time);
-    $(".trade.bittrex").html("zec: " + zecUsd * coinMining.bittrex.zec + "<br>" + "zec: " + zecUsd * coinMining.bittrex.zec + "<br>");
-    $(".trade.poloniex").html("dgb: " + zecUsd * coinMining.poloniex.dgb + "<br>");
+    $(".trade.bittrex").html("zec: " + (zecUsd * coinMining.bittrex.zec).toFixed(2) + "<br>" + "zcl: " + (zecUsd * coinMining.bittrex.zec).toFixed(2) + "<br>");
+    $(".trade.poloniex").html("dgb: " + (zecUsd * coinMining.bittrex.zec).toFixed(2) + "<br>" + "lbc: " + (zecUsd * coinMining.bittrex.zec).toFixed(2) + "<br>");
+    $(".pool.mpoolhub").html("dgb: " + 0 + "<br>" + "xmr: " + (zecUsd * coinMining.bittrex.zec).toFixed(2) + "<br>");
+    $(".pool.suprnova").html("lbc: " + (zecUsd * coinMining.bittrex.zec).toFixed(2) + "<br>"
+                           + "zcl: " + (zecUsd * coinMining.bittrex.zec).toFixed(2) + "<br>"
+                           + "zec: " + (zecUsd * coinMining.bittrex.zec).toFixed(2) + "<br>"
+                           + "xmr: " + (zecUsd * coinMining.bittrex.zec).toFixed(2) + "<br>");
     window.setTimeout(arguments.callee, 1000);
 })();
 };

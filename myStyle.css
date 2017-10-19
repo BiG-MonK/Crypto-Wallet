@@ -5,16 +5,15 @@ body{
 .coin {
 	border: 1px solid green;
 	margin-bottom: 5px;
-	background-color: grey;
-}
-
-.mining {
-	border: 2px solid green;
-	margin-bottom: 5px;
-	background-color: green;
+	background-color: lightgrey;
 }
 
 .trade {
 	border: 2px solid green;
 	background-color: lightblue;
+}
+
+.pool {
+	border: 2px solid green;
+	background-color: lightgreen;
 }
