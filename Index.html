@@ -24,15 +24,33 @@
                 <div class="coin ripple"><img src="img/ripple.png"></div>
             </div>
             <div class="col-xs-7">
-                <div class="row">
-                    <div class="col-xs-4">
-                        <div class="mining zcash"></div>
+                <div class="row">                               <!-- Разделение на биржи и пулы -->
+                    <div class="col-xs-6">
+                        <p>На биржах:</p>
+                        <div class="trade">
+                            <div class="row">
+                                <div class="col-xs-6">
+                                    <p>bittrex:</p>
+                                    <div class="trade bittrex">
+                                    </div>
+
+                                </div>
+                                <div class="col-xs-6">
+                                    <p>poloniex:</p>
+                                    <div class="trade poloniex">
+
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </div>
                     </div>
-                    <div class="col-xs-4">
-                        <div class="mining monero"></div>
-                    </div>
-                    <div class="col-xs-4">
-                        <div class="mining library"></div>
+                    <div class="col-xs-6">
+                        <p>На Пулах:</p>
+                        <div class="mining pool">
+
+                        </div>
                     </div>
                 </div>
             </div>
@@ -42,26 +60,10 @@
             </div>
         </div>
     </div>
-    <div>
-        <div id="test" class="message">
-
-        </div>
-    </div>
     <h1>Моя крипта</h1>
     <script type="text/javascript" src="https://files.coinmarketcap.com/static/widget/currency.js"></script>
     <!-- BitCoin BTC -->
     <div class="coinmarketcap-currency-widget" data-currency="bitcoin" data-base="USD" ></div>
-    <!-- Monero XMR -->   
-    <div class="coinmarketcap-currency-widget" data-currency="monero" data-base="USD"  data-secondary="BTC"></div>
-    <!-- ZClassic ZCL -->         
-    <div class="coinmarketcap-currency-widget" data-currency="zclassic" data-base="USD"  data-secondary="BTC"></div>
-    <!-- LBRY Credits LBC -->        
-    <div class="coinmarketcap-currency-widget" data-currency="library-credit" data-base="USD"  data-secondary="BTC"></div>
-    <!-- Zcash ZEC --> 
-    <div class="coinmarketcap-currency-widget" data-currency="zcash" data-base="USD"  data-secondary="BTC"></div>
-    <!-- DigiByte DGB -->         
-    <div class="coinmarketcap-currency-widget" data-currency="digibyte" data-base="USD"  data-secondary="BTC"></div>
-    <div class="coinmarketcap-currency-widget" data-currency="ripple" data-base="USD" ></div>
     <script src="script.js"></script>
 </body>
 </html>

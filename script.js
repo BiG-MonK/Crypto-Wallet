@@ -12,7 +12,8 @@ window.onload = function(){
     secLast = secLast - (minLast * 60);                // Остатки секунд после вычета минут
     time += "<strong>Данные устарели на: " + minLast + ":" + secLast + "</strong> " + "<br>";
     $(".time").html(time);
-    $(".mining.zcash").html(zecUsd * coinMining.bittrex.zec);
+    $(".trade.bittrex").html("zec: " + zecUsd * coinMining.bittrex.zec + "<br>" + "zec: " + zecUsd * coinMining.bittrex.zec + "<br>");
+    $(".trade.poloniex").html("dgb: " + zecUsd * coinMining.poloniex.dgb + "<br>");
     window.setTimeout(arguments.callee, 1000);
 })();
 };
