@@ -26,7 +26,10 @@ window.onload = function(){
 //-----------------  Объект хранящий все имеющиеся криптовалюты от майнинга на сейчас
 var secUpdateGL = 0;              // Глобальная переменная хранящая в дальнейшем разницу в сек после обновления данных по монетам
 var zecUsd = 0;                   // Глобальная переменная хранящая цену ZEC в USD
-var btcUsd = 0;
+var rur_usd = 0;                  // Глобальная переменная хранящая курс RUR/USD
+var rur_eur = 0;                  // Глобальная переменная хранящая курс RUR/EUR
+var btcUsd = 0;                  
+var rurUsd = 0;                   
 var coinMining = {
   bittrex : {
     zcl : 27.84086542,
@@ -53,6 +56,7 @@ var coinMining = {
 // ------------ Bitcoin BTC --------------------
 $.getJSON("https://api.coinmarketcap.com/v1/ticker/?limit=400", function(json) { // ------------ Bitcoin BTC -------------------
   var html = "";
+  var marketCap = "";                               // Переменная для разбиения на разряды большого числа
   secUpdateGL = json[0].last_updated;
   btcUsd = json[0].price_usd;
   for (var i = 0; i < 400; i++) {
@@ -64,41 +68,33 @@ $.getJSON("https://api.coinmarketcap.com/v1/ticker/?limit=400", function(json) {
       case "ZEC":
       case "DGB":
       case "XRP":
-      html = $(".coin." + json[i].id).html();
-      html += "<strong class='name'> " + json[i].name + " ("+ json[i].symbol + ")" + "</strong>: ";
-      html += "<strong> Rank: " + json[i].rank + "</strong>: " + "<br>";
+      marketCap = json[i].market_cap_usd.replace(/(\d)(?=(\d\d\d)+([^\d]|$))/g, '$1 ');
+      html = $("." + json[i].id).html();
+      html += "<strong class='name'> " + json[i].name + " ("+ json[i].symbol + ")" + "</strong>: <br>";
+      html += "<strong class='rank'> Rank: " + json[i].rank + " </strong><br>";
       html += "<strong class='USD'>" + json[i].price_usd + " USD</strong> " + "<br>";
+      html += "<strong class='rur_usd'>(" + (json[i].price_usd * rur_usd).toFixed(2) + " RUR)</strong> " + "<br>";
       html += "<strong class='price_btc'>" + json[i].price_btc + " BTC</strong> " + "<br>";
-      html += "<strong>Валатильность монеты: </strong> " + "<br>";
-      html += "<strong>За 1 час: " + json[i].percent_change_1h + "%</strong> " + "<br>";
-      html += "<strong>За 24 часа: " + json[i].percent_change_24h + "%</strong> " + "<br>";
-      html += "<strong>За неделю: " + json[i].percent_change_7d + "%</strong> " + "<br>";
-      $(".coin." + json[i].id).html(html);
+      $("." + json[i].id).html(html);
+
+      html = "";
+      html += "<strong class='market_cap'>Market Cap: <br>" + marketCap + " USD</strong> <br>";
+      html += "1h: <strong class='change_coin'> " + json[i].percent_change_1h + "%</strong> " + "<br>";
+      html += "24h: <strong class='change_coin'> " + json[i].percent_change_24h + "%</strong> " + "<br>";
+      html += "Week: <strong class='change_coin'> " + json[i].percent_change_7d + "%</strong> " + "<br>";
+      $("." + json[i].id + "_rest").html(html);
     }
   }
 }); 
 
-/*$.getJSON("https://api.coinmarketcap.com/v1/ticker/zcash/", function(json) { // ------------ Zcash ZEC -------------------
-  var html = $(".coin.zcash").html();
-  zecUsd = json[0].price_usd;
-  html += "<strong> Rank: " + json[0].rank + "</strong>: " + "<br>";
-  html += "<strong>" + json[0].name + " ("+ json[0].symbol + ")" + "</strong>: " + "<br>";
-  html += "<strong>" + json[0].price_usd + " USD</strong> " + "<br>";
-  html += "<strong>" + json[0].price_btc + " BTC</strong> " + "<br>";
-  html += "<strong>Валатильность монеты: </strong> " + "<br>";
-  html += "<strong>За 1 час: " + json[0].percent_change_1h + "%</strong> " + "<br>";
-  html += "<strong>За 24 часа: " + json[0].percent_change_24h + "%</strong> " + "<br>";
-  html += "<strong>За неделю: " + json[0].percent_change_7d + "%</strong> " + "<br>";
-  $(".coin.zcash").html(html);
-}); */
-
 // ------------ Курс Фиата RUR/USD RUR/EUR --------------------
 $.getJSON("https://query.yahooapis.com/v1/public/yql?q=select+*+from+yahoo.finance.xchange+where+pair+=+%22USDRUB,EURRUB%22&format=json&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys&callback=", function(json) {
-  var USD = "";
-  var EUR = "";
-  USD = "<strong> Курс RUR/USD: " + json.query.results.rate[0].Rate + "</strong>" + "<br>";
-  $(".USD").html(USD);
-  EUR = "<strong> Курс RUR/EUR: " + json.query.results.rate[1].Rate + "</strong>" + "<br>";
-  $(".EUR").html(EUR);
+  var html = "";
+  rur_usd = json.query.results.rate[0].Rate;
+  rur_eur = json.query.results.rate[1].Rate;
+  html = "<strong> Курс RUR/USD: " + rur_usd + "</strong>" + "<br>";
+  $(".USD").html(rur_usd);
+  html = "<strong> Курс RUR/EUR: " + rur_eur + "</strong>" + "<br>";
+  $(".EUR").html(rur_eur);
 }); 
 

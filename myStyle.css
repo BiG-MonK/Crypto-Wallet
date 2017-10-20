@@ -2,23 +2,39 @@ body{
 	padding-left: 50px;
 }
 img {
-	width: 30px;
+	width: 50px;
 }
 strong.USD {
-	font-size: 24px;
+	font-size: 26px;
+	color: green;
+}
+strong.rur_usd{
+	font-size: 20px;
+	color: #0c8ac4;
 }
 strong.name {
-	font-size: 18px;
+	font-size: 24px;
 }
 strong.price_btc {
 	font-size: 16px;
 }
-
+strong.rank {
+	font-size: 16px;
+}
+.left {
+	display: inline-block;
+	width: 59%;
+}
+.right {
+	display: inline-block;
+	width: 39%;
+}
 .coin {
-
+	text-align: center;
 	border: 1px solid green;
 	margin-bottom: 5px;
 	background-color: lightgrey;
+	padding: 5px;
 }
 .trade {
 	border: 2px solid green;
