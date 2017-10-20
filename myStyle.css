@@ -1,18 +1,29 @@
 body{
 	padding-left: 50px;
 }
+img {
+	width: 30px;
+}
+strong.USD {
+	font-size: 24px;
+}
+strong.name {
+	font-size: 18px;
+}
+strong.price_btc {
+	font-size: 16px;
+}
 
 .coin {
+
 	border: 1px solid green;
 	margin-bottom: 5px;
 	background-color: lightgrey;
 }
-
 .trade {
 	border: 2px solid green;
 	background-color: lightblue;
 }
-
 .pool {
 	border: 2px solid green;
 	background-color: lightgreen;

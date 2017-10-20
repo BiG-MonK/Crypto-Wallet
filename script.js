@@ -16,11 +16,11 @@ window.onload = function(){
     $(".trade.poloniex").html("dgb: " + (zecUsd * coinMining.bittrex.zec).toFixed(2) + "<br>" + "lbc: " + (zecUsd * coinMining.bittrex.zec).toFixed(2) + "<br>");
     $(".pool.mpoolhub").html("dgb: " + 0 + "<br>" + "xmr: " + (zecUsd * coinMining.bittrex.zec).toFixed(2) + "<br>");
     $(".pool.suprnova").html("lbc: " + (zecUsd * coinMining.bittrex.zec).toFixed(2) + "<br>"
-                           + "zcl: " + (zecUsd * coinMining.bittrex.zec).toFixed(2) + "<br>"
-                           + "zec: " + (zecUsd * coinMining.bittrex.zec).toFixed(2) + "<br>"
-                           + "xmr: " + (zecUsd * coinMining.bittrex.zec).toFixed(2) + "<br>");
+     + "zcl: " + (zecUsd * coinMining.bittrex.zec).toFixed(2) + "<br>"
+     + "zec: " + (zecUsd * coinMining.bittrex.zec).toFixed(2) + "<br>"
+     + "xmr: " + (zecUsd * coinMining.bittrex.zec).toFixed(2) + "<br>");
     window.setTimeout(arguments.callee, 1000);
-})();
+  })();
 };
 
 //-----------------  Объект хранящий все имеющиеся криптовалюты от майнинга на сейчас
@@ -51,22 +51,34 @@ var coinMining = {
 };
 
 // ------------ Bitcoin BTC --------------------
-$.getJSON("https://api.coinmarketcap.com/v1/ticker/bitcoin/", function(json) { // ------------ Bitcoin BTC -------------------
-  var html = $(".coin.bitcoin").html();
+$.getJSON("https://api.coinmarketcap.com/v1/ticker/?limit=400", function(json) { // ------------ Bitcoin BTC -------------------
+  var html = "";
   secUpdateGL = json[0].last_updated;
   btcUsd = json[0].price_usd;
-  html += "<strong> Rank: " + json[0].rank + "</strong>: " + "<br>";
-  html += "<strong>" + json[0].name + " ("+ json[0].symbol + ")" + "</strong>: " + "<br>";
-  html += "<strong>" + json[0].price_usd + " USD</strong> " + "<br>";
-  html += "<strong>" + json[0].price_btc + " BTC</strong> " + "<br>";
-  html += "<strong>Валатильность монеты: </strong> " + "<br>";
-  html += "<strong>За 1 час: " + json[0].percent_change_1h + "%</strong> " + "<br>";
-  html += "<strong>За 24 часа: " + json[0].percent_change_24h + "%</strong> " + "<br>";
-  html += "<strong>За неделю: " + json[0].percent_change_7d + "%</strong> " + "<br>";
-  $(".coin.bitcoin").html(html);
+  for (var i = 0; i < 400; i++) {
+    switch (json[i].symbol) {
+      case "BTC":
+      case "XMR":
+      case "ZCL":
+      case "LBC":
+      case "ZEC":
+      case "DGB":
+      case "XRP":
+      html = $(".coin." + json[i].id).html();
+      html += "<strong class='name'> " + json[i].name + " ("+ json[i].symbol + ")" + "</strong>: ";
+      html += "<strong> Rank: " + json[i].rank + "</strong>: " + "<br>";
+      html += "<strong class='USD'>" + json[i].price_usd + " USD</strong> " + "<br>";
+      html += "<strong class='price_btc'>" + json[i].price_btc + " BTC</strong> " + "<br>";
+      html += "<strong>Валатильность монеты: </strong> " + "<br>";
+      html += "<strong>За 1 час: " + json[i].percent_change_1h + "%</strong> " + "<br>";
+      html += "<strong>За 24 часа: " + json[i].percent_change_24h + "%</strong> " + "<br>";
+      html += "<strong>За неделю: " + json[i].percent_change_7d + "%</strong> " + "<br>";
+      $(".coin." + json[i].id).html(html);
+    }
+  }
 }); 
 
-$.getJSON("https://api.coinmarketcap.com/v1/ticker/zcash/", function(json) { // ------------ Zcash ZEC -------------------
+/*$.getJSON("https://api.coinmarketcap.com/v1/ticker/zcash/", function(json) { // ------------ Zcash ZEC -------------------
   var html = $(".coin.zcash").html();
   zecUsd = json[0].price_usd;
   html += "<strong> Rank: " + json[0].rank + "</strong>: " + "<br>";
@@ -78,7 +90,7 @@ $.getJSON("https://api.coinmarketcap.com/v1/ticker/zcash/", function(json) { // 
   html += "<strong>За 24 часа: " + json[0].percent_change_24h + "%</strong> " + "<br>";
   html += "<strong>За неделю: " + json[0].percent_change_7d + "%</strong> " + "<br>";
   $(".coin.zcash").html(html);
-}); 
+}); */
 
 // ------------ Курс Фиата RUR/USD RUR/EUR --------------------
 $.getJSON("https://query.yahooapis.com/v1/public/yql?q=select+*+from+yahoo.finance.xchange+where+pair+=+%22USDRUB,EURRUB%22&format=json&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys&callback=", function(json) {
