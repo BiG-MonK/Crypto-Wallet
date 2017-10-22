@@ -12,13 +12,27 @@ window.onload = function(){
     secLast = secLast - (minLast * 60);                // Остатки секунд после вычета минут
     time += "<strong>Данные устарели на: " + minLast + ":" + secLast + "</strong> " + "<br>";
     $(".time").html(time);
-    $(".mining.bittrex").html("zec: " + (zecUsd * coinMining.bittrex.zec).toFixed(2) + "<br>" + "zcl: " + (zclUsd * coinMining.bittrex.zcl).toFixed(2) + "<br>");
-    $(".mining.poloniex").html("dgb: " + (dgbUsd * coinMining.poloniex.dgb).toFixed(2) + "<br>" + "lbc: " + (lbcUsd * coinMining.poloniex.lbc).toFixed(2) + "<br>");
-    $(".mining.mpoolhub").html("dgb: " + 0 + "<br>" + "xmr: " + (dgbUsd * coinMining.mpoolhub.dgb).toFixed(2) + "<br>");
-    $(".mining.suprnova").html("lbc: " + (lbcUsd * coinMining.suprnova.lbc).toFixed(2) + "<br>"
-     + "zcl: " + (zclUsd * coinMining.suprnova.zcl).toFixed(2) + "<br>"
-     + "zec: " + (zecUsd * coinMining.suprnova.zec).toFixed(2) + "<br>"
-     + "xmr: " + (xmrUsd * coinMining.suprnova.xmr).toFixed(2) + "<br>");
+    $(".xmr-bittrex").html(coinMining.bittrex.xmr);  
+    $(".xmr-poloniex").html(coinMining.poloniex.xmr);
+    $(".xmr-mpoolhub").html(coinMining.mpoolhub.xmr);
+    $(".xmr-suprnova").html(coinMining.suprnova.xmr);
+    $(".zec-bittrex").html(coinMining.bittrex.zec);  
+    $(".zec-poloniex").html(coinMining.poloniex.zec);
+    $(".zec-mpoolhub").html(coinMining.mpoolhub.zec);
+    $(".zec-suprnova").html(coinMining.suprnova.zec);
+    $(".dgb-bittrex").html(coinMining.bittrex.dgb);  
+    $(".dgb-poloniex").html(coinMining.poloniex.dgb);
+    $(".dgb-mpoolhub").html(coinMining.mpoolhub.dgb);
+    $(".dgb-suprnova").html(coinMining.suprnova.dgb);
+    $(".lbc-bittrex").html(coinMining.bittrex.lbc);  
+    $(".lbc-poloniex").html(coinMining.poloniex.lbc);
+    $(".lbc-mpoolhub").html(coinMining.mpoolhub.lbc);
+    $(".lbc-suprnova").html(coinMining.suprnova.lbc);
+    $(".zcl-bittrex").html(coinMining.bittrex.zcl);  
+    $(".zcl-poloniex").html(coinMining.poloniex.zcl);
+    $(".zcl-mpoolhub").html(coinMining.mpoolhub.zcl);
+    $(".zcl-suprnova").html(coinMining.suprnova.zcl);
+
     window.setTimeout(arguments.callee, 1000);
   })();
 };
@@ -37,22 +51,32 @@ var rur_eur = 0;                  // Глобальная переменная �
 //-----------------  Объект хранящий все имеющиеся криптовалюты от майнинга на сейчас
 var coinMining = { 
   bittrex : {
-    zcl : 27.84086542,
-    zec : 2.83596232
+    xmr : 0,
+    zec : 2.83596232,
+    dgb : 0,
+    lbc : 0,
+    zcl : 27.84086542
   },
   poloniex : {
+    xmr : 0, 
+    zec : 0,  
     dgb : 417.44101617,
-    lbc : 527.5267266
+    lbc : 527.5267266,
+    zcl : 0
   },
   mpoolhub : {
+    xmr : 0.43234758, 
+    zec : 0,  
     dgb : 0,
-    xmr : 0.43234758
+    lbc : 0,
+    zcl : 0
   },
   suprnova : {
+    xmr : 0.0337, 
+    zec : 0,  
+    dgb : 0,
     lbc : 0,
-    zcl : 1.6631,
-    zec : 0,
-    xmr : 0.0337
+    zcl : 1.6631
   },
   fiat : 6652.93,
   dateIns : "18.10.2017 11:00"
