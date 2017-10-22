@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-   <meta charset="utf-8">
-   <meta http-equiv="Refresh" content="300" />  <!-- Обновление страницы каждые 5 минут-->
-   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-   <link rel="stylesheet" href="myStyle.css" type="text/css"/>
-   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-   <script>document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')</script>
-   <title>Crypto-Wallet</title>
+ <meta charset="utf-8">
+ <meta http-equiv="Refresh" content="300" />  <!-- Обновление страницы каждые 5 минут-->
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+ <link rel="stylesheet" href="myStyle.css" type="text/css"/>
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+ <script>document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')</script>
+ <title>Crypto-Wallet</title>
 </head>
 <body>
     <h1>OutPut</h1>
@@ -17,67 +17,55 @@
             <div class="col-xs-3">
                 <div class="coin">
                     <div class="bitcoin left"><img src="img/bitcoin.png"></div>
-                    <div class="bitcoin_rest right"></div>
+                    <div class="bitcoin right"></div>
                 </div>
                 <div class="coin">
-                    <div class="monero left"><img src="img/monero.png"></div>
-                    <div class="monero_rest right"></div>
+                    <div class="ethereum left"><img src="img/ethereum.png"></div>   
+                    <div class="ethereum right"></div>            
                 </div>
                 <div class="coin">
-                 <div class="digibyte left"><img src="img/digibyte.png"></div>
-                 <div class="digibyte_rest right"></div>
-             </div>
-             <div class="coin">
-                <div class="zclassic left"><img src="img/zclassic.png"></div>
-                <div class="zclassic_rest right"></div>
+                    <div class="ripple left"><img src="img/ripple.png"></div>
+                    <div class="ripple right"></div>
+                </div>
+                <div class="coin">
+                    <div class="monero left"><img src="img/monero.png"></div>   
+                    <div class="monero right"></div>            
+                </div>
             </div>
-        </div>
-        <div class="col-xs-6">
-            <div class="coin USD"></div>
-            <div class="coin EUR"></div>
-            <div class="row">                               Разделение на биржи и пулы
-                <div class="col-xs-6">
-                    <p>На биржах:</p>
-                    <div class="trade">
-                        <div class="row">
-                            <div class="col-xs-6">
-                                <p>bittrex:</p>
-                                <div class="trade bittrex">
-                                </div>
-                            </div>
-                            <div class="col-xs-6">
-                                <p>poloniex:</p>
-                                <div class="trade poloniex">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xs-6">
-                    <p>На Пулах:</p>
-                    <div class="pool">
-                        <div class="row">
-                            <div class="col-xs-6">
-                                <p>mpoolhub:</p>
-                                <div class="pool mpoolhub">
-                                </div>
-                            </div>
-                            <div class="col-xs-6">
-                                <p>suprnova:</p>
-                                <div class="pool suprnova">
-                                </div>
-                            </div>
-                        </div>
+            <div class="col-xs-6">
+                <div class="coin USD"></div>
+                <div class="coin EUR"></div>
+                <p> Разделение на биржи и пулы</p>
+                <div class="row">
+                    <div class="col-xs-6 mining">
+                        <p>MininG:</p>
+                        <div class="bittrix mining"></div>
+                        <div class="poloniex mining"></div>
+                        <div class="mpoolhub mining"></div>
+                        <div class="suprnova mining"></div>
+                        <div class="fiat mining"></div>
+                        <div class="date mining"></div>
                     </div>
                 </div>
             </div>
+            <div class="col-xs-3">
+               <div class="coin">
+                   <div class="zcash left"><img src="img/zcash.png"></div>  
+                   <div class="zcash right"></div>  
+               </div>
+               <div class="coin">
+                   <div class="digibyte left"><img src="img/digibyte.png"></div>
+                   <div class="digibyte right"></div>
+               </div>
+               <div class="coin">
+                <div class="library-credit left"><img src="img/library-credit.png"></div>
+                <div class="library-credit right"></div>
+            </div>
+            <div class="coin">
+                <div class="zclassic left"><img src="img/zclassic.png"></div> 
+                <div class="zclassic right"></div>
+            </div>
         </div>
-        <div class="col-xs-3">
-            <div class="coin ripple"><img src="img/ripple.png"></div>
-            <div class="coin zcash"><img src="img/zcash.png"></div>
-            <div class="coin library-credit"><img src="img/library-credit.png"></div>                
-        </div>
-
     </div>
 </div>
 <script src="script.js"></script>

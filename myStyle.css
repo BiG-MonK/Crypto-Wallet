@@ -21,6 +21,13 @@ strong.price_btc {
 strong.rank {
 	font-size: 16px;
 }
+strong.change_coin{
+	font-size: 18px;
+}
+strong.market_cap{
+	font-size: 14px;
+	font-style: italic;
+}
 .left {
 	display: inline-block;
 	width: 59%;
