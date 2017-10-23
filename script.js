@@ -14,31 +14,28 @@ window.onload = function(){
     time_update = "<strong>Данные устарели на: " + minLast + ":" + secLast + "</strong> ";
     $(".time").html(time);
     $(".time_update").html(time_update);
-    $(".xmr-bittrex").html(coinMining.bittrex.xmr);  
-    $(".xmr-poloniex").html(coinMining.poloniex.xmr);
-    $(".xmr-mpoolhub").html(coinMining.mpoolhub.xmr);
-    $(".xmr-suprnova").html(coinMining.suprnova.xmr);
-    $(".zec-bittrex").html(coinMining.bittrex.zec);  
-    $(".zec-poloniex").html(coinMining.poloniex.zec);
-    $(".zec-mpoolhub").html(coinMining.mpoolhub.zec);
-    $(".zec-suprnova").html(coinMining.suprnova.zec);
-    $(".dgb-bittrex").html(coinMining.bittrex.dgb);  
-    $(".dgb-poloniex").html(coinMining.poloniex.dgb);
-    $(".dgb-mpoolhub").html(coinMining.mpoolhub.dgb);
-    $(".dgb-suprnova").html(coinMining.suprnova.dgb);
-    $(".lbc-bittrex").html(coinMining.bittrex.lbc);  
-    $(".lbc-poloniex").html(coinMining.poloniex.lbc);
-    $(".lbc-mpoolhub").html(coinMining.mpoolhub.lbc);
-    $(".lbc-suprnova").html(coinMining.suprnova.lbc);
-    $(".zcl-bittrex").html(coinMining.bittrex.zcl);  
-    $(".zcl-poloniex").html(coinMining.poloniex.zcl);
-    $(".zcl-mpoolhub").html(coinMining.mpoolhub.zcl);
-    $(".zcl-suprnova").html(coinMining.suprnova.zcl);
-
     window.setTimeout(arguments.callee, 1000);
   })();
 };
-
+//-----------------  Функция нажатия на кнопку Получить данные майнинга
+function getdata(){
+  $(".xmr-total-mining").html(xmrTotal + "<br>" + (xmrTotal * xmrUsd).toFixed(2) + " $<br>" + (xmrTotal * xmrUsd * rur_usd).toFixed(2) + " руб.<br>");
+  $(".zec-total-mining").html(zecTotal + "<br>" + (zecTotal * zecUsd).toFixed(2) + " $<br>" + (zecTotal * zecUsd * rur_usd).toFixed(2) + " руб.<br>");
+  $(".dgb-total-mining").html(dgbTotal + "<br>" + (dgbTotal * dgbUsd).toFixed(2) + " $<br>" + (dgbTotal * dgbUsd * rur_usd).toFixed(2) + " руб.<br>");
+  $(".lbc-total-mining").html(lbcTotal + "<br>" + (lbcTotal * lbcUsd).toFixed(2) + " $<br>" + (lbcTotal * lbcUsd * rur_usd).toFixed(2) + " руб.<br>");
+  $(".zcl-total-mining").html(zclTotal + "<br>" + (zclTotal * zclUsd).toFixed(2) + " $<br>" + (zclTotal * zclUsd * rur_usd).toFixed(2) + " руб.<br>");
+  $(".total-mining").html((xmrTotal * xmrUsd + zecTotal * zecUsd + dgbTotal * dgbUsd + lbcTotal * lbcUsd + zclTotal * zclUsd).toFixed(2) + " $<br>" 
+    + ((xmrTotal * xmrUsd + zecTotal * zecUsd + dgbTotal * dgbUsd + lbcTotal * lbcUsd + zclTotal * zclUsd) * rur_usd).toFixed(2) + " руб.<br>"); 
+  bittrexMiningUSD = (coinMining.bittrex.xmr * xmrUsd + coinMining.bittrex.zec * zecUsd + coinMining.bittrex.dgb * dgbUsd + coinMining.bittrex.lbc * lbcUsd + coinMining.bittrex.zcl * zclUsd).toFixed(2);
+  poloniexMiningUSD = (coinMining.poloniex.xmr * xmrUsd + coinMining.poloniex.zec * zecUsd + coinMining.poloniex.dgb * dgbUsd + coinMining.poloniex.lbc * lbcUsd + coinMining.poloniex.zcl * zclUsd).toFixed(2);
+  mpoolhubMiningUSD = (coinMining.mpoolhub.xmr * xmrUsd + coinMining.mpoolhub.zec * zecUsd + coinMining.mpoolhub.dgb * dgbUsd + coinMining.mpoolhub.lbc * lbcUsd + coinMining.mpoolhub.zcl * zclUsd).toFixed(2);
+  suprnovaMiningUSD = (coinMining.suprnova.xmr * xmrUsd + coinMining.suprnova.zec * zecUsd + coinMining.suprnova.dgb * dgbUsd + coinMining.suprnova.lbc * lbcUsd + coinMining.suprnova.zcl * zclUsd).toFixed(2);
+  $(".bittrex-mining").html(($(".bittrex-mining").html()) + bittrexMiningUSD + " $<br>" + "(" + (bittrexMiningUSD * rur_usd).toFixed(2) + " руб.)<br><br>");
+  $(".poloniex-mining").html(($(".poloniex-mining").html()) + poloniexMiningUSD + " $<br>" + "("  + (poloniexMiningUSD * rur_usd).toFixed(2) + " руб.)<br><br>");
+  $(".mpoolhub-mining").html(($(".mpoolhub-mining").html()) + mpoolhubMiningUSD + " $<br>" + "("  + (mpoolhubMiningUSD * rur_usd).toFixed(2) + " руб.)<br><br>");
+  $(".suprnova-mining").html(($(".suprnova-mining").html()) + suprnovaMiningUSD + " $<br>" + "("  + (suprnovaMiningUSD * rur_usd).toFixed(2) + " руб.)<br><br>");
+}
+//-----------------  Объявление переменных
 var secUpdateGL = 0;              // Глобальная переменная хранящая в дальнейшем разницу в сек после обновления данных по монетам
 var btcUsd = 0;                   // Глобальная переменная хранящая цену BTC в USD
 var xmrUsd = 0;
@@ -50,6 +47,10 @@ var zecUsd = 0;
 var lbcUsd = 0;          
 var rur_usd = 0;                  // Глобальная переменная хранящая курс RUR/USD
 var rur_eur = 0;                  // Глобальная переменная хранящая курс RUR/EUR
+var bittrexMiningUSD;                   // Глобальная переменная хранящая сумму наймайненных денег в USD на бирже Bittrex
+var poloniexMiningUSD;
+var mpoolhubMiningUSD;
+var suprnovaMiningUSD;
 //-----------------  Объект хранящий все имеющиеся криптовалюты от майнинга на сейчас
 var coinMining = { 
   bittrex : {
@@ -67,7 +68,7 @@ var coinMining = {
     zcl : 0
   },
   mpoolhub : {
-    xmr : 0.43234758, 
+    xmr : 0.47487294, 
     zec : 0,  
     dgb : 0,
     lbc : 0,
@@ -77,11 +78,11 @@ var coinMining = {
     xmr : 0.0337, 
     zec : 0,  
     dgb : 0,
-    lbc : 0,
+    lbc : 168.2061,
     zcl : 1.6631
   },
   fiat : 6652.93,
-  dateIns : "18.10.2017 11:00"
+  dateIns : "23.10.2017 11:15"
 };
 
 // ------------ JSON запрос данных по крипте --------------------
@@ -125,7 +126,6 @@ $.getJSON("https://api.coinmarketcap.com/v1/ticker/?limit=400", function(json) {
     }
   }
 }); 
-
 // ------------ Курс Фиата RUR/USD RUR/EUR --------------------
 $.getJSON("https://query.yahooapis.com/v1/public/yql?q=select+*+from+yahoo.finance.xchange+where+pair+=+%22USDRUB,EURRUB%22&format=json&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys&callback=", function(json) {
   var html = "";
@@ -136,4 +136,31 @@ $.getJSON("https://query.yahooapis.com/v1/public/yql?q=select+*+from+yahoo.finan
   html = "<strong> Курс RUR/EUR: " + rur_eur + "</strong>" + "<br>";
   $(".EUR").html(rur_eur);
 }); 
+// ------------ Вывод статичных данных майнинга с объекта coinMining
+var xmrTotal = coinMining.bittrex.xmr + coinMining.poloniex.xmr + coinMining.mpoolhub.xmr + coinMining.suprnova.xmr;
+var zecTotal = coinMining.bittrex.zec + coinMining.poloniex.zec + coinMining.mpoolhub.zec + coinMining.suprnova.zec;
+var dgbTotal = coinMining.bittrex.dgb + coinMining.poloniex.dgb + coinMining.mpoolhub.dgb + coinMining.suprnova.dgb;
+var lbcTotal = coinMining.bittrex.lbc + coinMining.poloniex.lbc + coinMining.mpoolhub.lbc + coinMining.suprnova.lbc;
+var zclTotal = coinMining.bittrex.zcl + coinMining.poloniex.zcl + coinMining.mpoolhub.zcl + coinMining.suprnova.zcl;
+$(".xmr-bittrex-mining").html(coinMining.bittrex.xmr);  
+$(".xmr-poloniex-mining").html(coinMining.poloniex.xmr);
+$(".xmr-mpoolhub-mining").html(coinMining.mpoolhub.xmr);
+$(".xmr-suprnova-mining").html(coinMining.suprnova.xmr);
+$(".zec-bittrex-mining").html(coinMining.bittrex.zec);  
+$(".zec-poloniex-mining").html(coinMining.poloniex.zec);
+$(".zec-mpoolhub-mining").html(coinMining.mpoolhub.zec);
+$(".zec-suprnova-mining").html(coinMining.suprnova.zec);
+$(".dgb-bittrex-mining").html(coinMining.bittrex.dgb);  
+$(".dgb-poloniex-mining").html(coinMining.poloniex.dgb);
+$(".dgb-mpoolhub-mining").html(coinMining.mpoolhub.dgb);
+$(".dgb-suprnova-mining").html(coinMining.suprnova.dgb);
+$(".lbc-bittrex-mining").html(coinMining.bittrex.lbc);  
+$(".lbc-poloniex-mining").html(coinMining.poloniex.lbc);
+$(".lbc-mpoolhub-mining").html(coinMining.mpoolhub.lbc);
+$(".lbc-suprnova-mining").html(coinMining.suprnova.lbc);
+$(".zcl-bittrex-mining").html(coinMining.bittrex.zcl);  
+$(".zcl-poloniex-mining").html(coinMining.poloniex.zcl);
+$(".zcl-mpoolhub-mining").html(coinMining.mpoolhub.zcl);
+$(".zcl-suprnova-mining").html(coinMining.suprnova.zcl);
+
 
