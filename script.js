@@ -2,7 +2,8 @@
 window.onload = function(){
   (function(){
     var dt = new Date();                               // Переменная обьект, необходим для работы со временем
-    var time = dt.getHours() + ':' + dt.getMinutes() + ':' + dt.getSeconds() + "<br>";
+    var time = dt.getHours() + ':' + dt.getMinutes() + ':' + dt.getSeconds();
+    var time_update = "";
     var secReal = Math.floor(dt.getTime() / 1000);     // Приведение настоящего времени в число с сокращением до секунд
     var secLast = secReal - secUpdateGL;               // Разница в секундах после обновления данных по катировкам монет
     if (secLast == secReal){ 
@@ -10,8 +11,9 @@ window.onload = function(){
     }
     var minLast = Math.floor(secLast / 60);            // Разница в минутах после обновления данных по катировкам монет
     secLast = secLast - (minLast * 60);                // Остатки секунд после вычета минут
-    time += "<strong>Данные устарели на: " + minLast + ":" + secLast + "</strong> " + "<br>";
+    time_update = "<strong>Данные устарели на: " + minLast + ":" + secLast + "</strong> ";
     $(".time").html(time);
+    $(".time_update").html(time_update);
     $(".xmr-bittrex").html(coinMining.bittrex.xmr);  
     $(".xmr-poloniex").html(coinMining.poloniex.xmr);
     $(".xmr-mpoolhub").html(coinMining.mpoolhub.xmr);
@@ -97,7 +99,7 @@ $.getJSON("https://api.coinmarketcap.com/v1/ticker/?limit=400", function(json) {
       case "ZEC":
       case "DGB":
       case "XRP":
-      if (json[i].symbol == "BTC") { btcUsd = json[i].price_usd;
+      if (json[i].symbol == "BTC") { btcUsd = json[i].price_usd;                // Присвоение значений переменным хранящих цену в USD у каждой крипты
       } else if (json[i].symbol == "ETH") {ethUsd = json[i].price_usd;
       } else if (json[i].symbol == "XRP") {xrpUsd = json[i].price_usd;
       } else if (json[i].symbol == "XMR") {xmrUsd = json[i].price_usd;
