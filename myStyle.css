@@ -1,5 +1,5 @@
 body{
-	padding-left: 50px;
+	padding-left: 20px;
 	padding-top: 20px;
 }
 input.get_data {
@@ -35,6 +35,9 @@ strong.market_cap{
 	font-size: 14px;
 	font-style: italic;
 }
+strong.name {
+	line-height: 0px;
+}
 div.time {
 	font-size: 26px;
 	font-style: italic;
@@ -44,6 +47,34 @@ div.time {
 div.time_update{
 	font-size: 12px;
 	color: #07574f;
+}
+.xmr-mining strong {
+	background-color: red;
+	display: inline-block;
+}
+.row .col-xs-2 {
+	border: 1px solid green;
+	margin-bottom: 10px;
+}
+.row.xmr-mining {
+	border: 1px solid green;
+	margin-bottom: 10px;
+}
+.row.zec-mining {
+	border: 1px solid green;
+	margin-bottom: 10px;
+}
+.row.dgb-mining {
+	border: 1px solid green;
+	margin-bottom: 10px;
+}
+.row.lbc-mining {
+	border: 1px solid green;
+	margin-bottom: 10px;
+}
+.row.zcl-mining {
+	border: 1px solid green;
+	margin-bottom: 10px;
 }
 .left {
 	display: inline-block;
