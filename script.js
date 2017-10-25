@@ -63,38 +63,46 @@ var mpoolhubMiningUSD;
 var suprnovaMiningUSD;
 //-----------------  Объект хранящий все имеющиеся криптовалюты от майнинга на сейчас
 var coinMining = { 
-  bittrex : {
-    xmr : 0,
-    zec : 2.83596232,
-    dgb : 0,
-    lbc : 0,
-    zcl : 27.84086542
+  bittrex: {
+    xmr: 0,
+    zec: 2.83596232,
+    dgb: 0,
+    lbc: 0,
+    zcl: 27.84086542
   },
-  poloniex : {
-    xmr : 0, 
-    zec : 0,  
-    dgb : 417.44101617,
-    lbc : 527.5267266,
-    zcl : 0
+  poloniex: {
+    xmr: 0, 
+    zec: 0,  
+    dgb: 417.44101617,
+    lbc: 527.5267266,
+    zcl: 0
   },
-  mpoolhub : {
-    xmr : 0.47487294, 
-    zec : 0,  
-    dgb : 0,
-    lbc : 0,
-    zcl : 0
+  mpoolhub: {
+    xmr: 0.47487294, 
+    zec: 0,  
+    dgb: 0,
+    lbc: 0,
+    zcl: 0
   },
-  suprnova : {
-    xmr : 0.0337, 
-    zec : 0,  
-    dgb : 0,
-    lbc : 168.2061,
-    zcl : 1.6631
+  suprnova: {
+    xmr: 0.0337, 
+    zec: 0,  
+    dgb: 0,
+    lbc: 168.2061,
+    zcl: 1.6631
   },
-  fiat : 6652.93,
-  dateIns : "23.10.2017 11:15"
+  fiat: 6652.93,
+  dateIns: "23.10.2017 11:15"
 };
-
+// ------------ Объект хранящий данные по сделкам на трейде
+var coinTrade = { 
+  //1: {exchange: "Poloniex",  time: "28.09.2017",  type: "SELL",  target: "ZEC",  sum: 3.43136168,  rurUsd: 58.3,  price-usd: 358,21,  fee: 3.08,  state: "CLOSE",  profit: 29685.45 },
+  1: {exchange: "Poloniex",  time: "01.10.2017",  type: "BUY",   target: "ZEC",  sum: 4.52419224,  rurUsd: 58.3,  price-usd: 271.00,  fee: 1.84,  state: "OPEN",   profit: ((zecUsd * 4.52419224) - (271 * 4.52419224)).toFixed(2)},
+  2: {exchange: "Poloniex",  time: "05.10.2017",  type: "SELL",  target: "XRP",  sum: 3.43136168,  rurUsd: 58.3,  price-usd: 358,21,  fee: 3.08,  state: "CLOSE",  profit: },
+  3: {exchange: "Poloniex",  time: "28.09.2017",  type: "SELL",  target: "ZEC",  sum: 3.43136168,  rurUsd: 58.3,  price-usd: 358,21,  fee: 3.08,  state: "CLOSE",  profit: }
+  //5: {exchange: "Poloniex",  time: "28.09.2017",  type: "SELL",  target: "ZEC",  sum: 3.43136168,  rurUsd: 58.3,  price-usd: 358,21,  fee: 3.08,  state: "CLOSE",  profit: },
+  //6: {exchange: "Poloniex",  time: "28.09.2017",  type: "SELL",  target: "ZEC",  sum: 3.43136168,  rurUsd: 58.3,  price-usd: 358,21,  fee: 3.08,  state: "CLOSE",  profit: }
+};
 // ------------ JSON запрос данных по крипте --------------------
 $.getJSON("https://api.coinmarketcap.com/v1/ticker/?limit=400", function(json) {
   var html = "";
@@ -132,25 +140,28 @@ $.getJSON("https://api.coinmarketcap.com/v1/ticker/?limit=400", function(json) {
                 html += "24h: <strong class='change_coin'> " + json[i].percent_change_24h + "%</strong><br>";
                 html += "Week: <strong class='change_coin'> " + json[i].percent_change_7d + "%</strong><br>";
                 $(".right." + json[i].id).html(html);
-    }
-  }
-  $(".xmr-total-mining").html(xmrTotal + "<br>" + (xmrTotal * xmrUsd).toFixed(2) + " $<br>" + (xmrTotal * xmrUsd * rur_usd).toFixed(2) + " руб.<br>");
-  $(".zec-total-mining").html(zecTotal + "<br>" + (zecTotal * zecUsd).toFixed(2) + " $<br>" + (zecTotal * zecUsd * rur_usd).toFixed(2) + " руб.<br>");
-  $(".dgb-total-mining").html(dgbTotal + "<br>" + (dgbTotal * dgbUsd).toFixed(2) + " $<br>" + (dgbTotal * dgbUsd * rur_usd).toFixed(2) + " руб.<br>");
-  $(".lbc-total-mining").html(lbcTotal + "<br>" + (lbcTotal * lbcUsd).toFixed(2) + " $<br>" + (lbcTotal * lbcUsd * rur_usd).toFixed(2) + " руб.<br>");
-  $(".zcl-total-mining").html(zclTotal + "<br>" + (zclTotal * zclUsd).toFixed(2) + " $<br>" + (zclTotal * zclUsd * rur_usd).toFixed(2) + " руб.<br>");
-  $(".total-mining").html((xmrTotal * xmrUsd + zecTotal * zecUsd + dgbTotal * dgbUsd + lbcTotal * lbcUsd + zclTotal * zclUsd).toFixed(2) + " $<br>" 
-    + ((xmrTotal * xmrUsd + zecTotal * zecUsd + dgbTotal * dgbUsd + lbcTotal * lbcUsd + zclTotal * zclUsd) * rur_usd).toFixed(2) + " руб.<br>"); 
-    bittrexMiningUSD = (coinMining.bittrex.xmr * xmrUsd + coinMining.bittrex.zec * zecUsd + coinMining.bittrex.dgb * dgbUsd + coinMining.bittrex.lbc * lbcUsd + coinMining.bittrex.zcl * zclUsd).toFixed(2);
-    poloniexMiningUSD = (coinMining.poloniex.xmr * xmrUsd + coinMining.poloniex.zec * zecUsd + coinMining.poloniex.dgb * dgbUsd + coinMining.poloniex.lbc * lbcUsd + coinMining.poloniex.zcl * zclUsd).toFixed(2);
-    mpoolhubMiningUSD = (coinMining.mpoolhub.xmr * xmrUsd + coinMining.mpoolhub.zec * zecUsd + coinMining.mpoolhub.dgb * dgbUsd + coinMining.mpoolhub.lbc * lbcUsd + coinMining.mpoolhub.zcl * zclUsd).toFixed(2);
-    suprnovaMiningUSD = (coinMining.suprnova.xmr * xmrUsd + coinMining.suprnova.zec * zecUsd + coinMining.suprnova.dgb * dgbUsd + coinMining.suprnova.lbc * lbcUsd + coinMining.suprnova.zcl * zclUsd).toFixed(2);
-  $(".bittrex-mining").html(($(".bittrex-mining").html()) + bittrexMiningUSD + " $<br>" + "(" + (bittrexMiningUSD * rur_usd).toFixed(2) + " руб.)<br><br>");
-  $(".poloniex-mining").html(($(".poloniex-mining").html()) + poloniexMiningUSD + " $<br>" + "("  + (poloniexMiningUSD * rur_usd).toFixed(2) + " руб.)<br><br>");
-  $(".mpoolhub-mining").html(($(".mpoolhub-mining").html()) + mpoolhubMiningUSD + " $<br>" + "("  + (mpoolhubMiningUSD * rur_usd).toFixed(2) + " руб.)<br><br>");
-  $(".suprnova-mining").html(($(".suprnova-mining").html()) + suprnovaMiningUSD + " $<br>" + "("  + (suprnovaMiningUSD * rur_usd).toFixed(2) + " руб.)<br><br>");
-  }); 
+              }
+            }
+// ------------ Вывод расчетных данных по таблице майнинга
+$(".xmr-total-mining").html(xmrTotal + "<br>" + (xmrTotal * xmrUsd).toFixed(2) + " $<br>" + (xmrTotal * xmrUsd * rur_usd).toFixed(2) + " руб.<br>");
+$(".zec-total-mining").html(zecTotal + "<br>" + (zecTotal * zecUsd).toFixed(2) + " $<br>" + (zecTotal * zecUsd * rur_usd).toFixed(2) + " руб.<br>");
+$(".dgb-total-mining").html(dgbTotal + "<br>" + (dgbTotal * dgbUsd).toFixed(2) + " $<br>" + (dgbTotal * dgbUsd * rur_usd).toFixed(2) + " руб.<br>");
+$(".lbc-total-mining").html(lbcTotal + "<br>" + (lbcTotal * lbcUsd).toFixed(2) + " $<br>" + (lbcTotal * lbcUsd * rur_usd).toFixed(2) + " руб.<br>");
+$(".zcl-total-mining").html(zclTotal + "<br>" + (zclTotal * zclUsd).toFixed(2) + " $<br>" + (zclTotal * zclUsd * rur_usd).toFixed(2) + " руб.<br>");
+$(".total-mining").html((xmrTotal * xmrUsd + zecTotal * zecUsd + dgbTotal * dgbUsd + lbcTotal * lbcUsd + zclTotal * zclUsd).toFixed(2) + " $<br>" 
+  + ((xmrTotal * xmrUsd + zecTotal * zecUsd + dgbTotal * dgbUsd + lbcTotal * lbcUsd + zclTotal * zclUsd) * rur_usd).toFixed(2) + " руб.<br>"); 
+bittrexMiningUSD = (coinMining.bittrex.xmr * xmrUsd + coinMining.bittrex.zec * zecUsd + coinMining.bittrex.dgb * dgbUsd + coinMining.bittrex.lbc * lbcUsd + coinMining.bittrex.zcl * zclUsd).toFixed(2);
+poloniexMiningUSD = (coinMining.poloniex.xmr * xmrUsd + coinMining.poloniex.zec * zecUsd + coinMining.poloniex.dgb * dgbUsd + coinMining.poloniex.lbc * lbcUsd + coinMining.poloniex.zcl * zclUsd).toFixed(2);
+mpoolhubMiningUSD = (coinMining.mpoolhub.xmr * xmrUsd + coinMining.mpoolhub.zec * zecUsd + coinMining.mpoolhub.dgb * dgbUsd + coinMining.mpoolhub.lbc * lbcUsd + coinMining.mpoolhub.zcl * zclUsd).toFixed(2);
+suprnovaMiningUSD = (coinMining.suprnova.xmr * xmrUsd + coinMining.suprnova.zec * zecUsd + coinMining.suprnova.dgb * dgbUsd + coinMining.suprnova.lbc * lbcUsd + coinMining.suprnova.zcl * zclUsd).toFixed(2);
+$(".bittrex-mining").html(($(".bittrex-mining").html()) + bittrexMiningUSD + " $<br>" + "(" + (bittrexMiningUSD * rur_usd).toFixed(2) + " руб.)<br><br>");
+$(".poloniex-mining").html(($(".poloniex-mining").html()) + poloniexMiningUSD + " $<br>" + "("  + (poloniexMiningUSD * rur_usd).toFixed(2) + " руб.)<br><br>");
+$(".mpoolhub-mining").html(($(".mpoolhub-mining").html()) + mpoolhubMiningUSD + " $<br>" + "("  + (mpoolhubMiningUSD * rur_usd).toFixed(2) + " руб.)<br><br>");
+$(".suprnova-mining").html(($(".suprnova-mining").html()) + suprnovaMiningUSD + " $<br>" + "("  + (suprnovaMiningUSD * rur_usd).toFixed(2) + " руб.)<br><br>");
 
+$(".suprnova-mining").html(($(".suprnova-mining").html()) + suprnovaMiningUSD + " $<br>" + "("  + (suprnovaMiningUSD * rur_usd).toFixed(2) + " руб.)<br><br>");
+
+}); 
 // ------------ Вывод статичных данных майнинга с объекта coinMining
 var xmrTotal = coinMining.bittrex.xmr + coinMining.poloniex.xmr + coinMining.mpoolhub.xmr + coinMining.suprnova.xmr;
 var zecTotal = coinMining.bittrex.zec + coinMining.poloniex.zec + coinMining.mpoolhub.zec + coinMining.suprnova.zec;
