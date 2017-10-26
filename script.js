@@ -96,12 +96,14 @@ var coinMining = {
 };
 // ------------ Объект хранящий данные по сделкам на трейде
 var coinTrade = { 
-  //1: {exchange: "Poloniex",  time: "28.09.2017",  type: "SELL",  target: "ZEC",  sum: 3.43136168,  rurUsd: 58.3,  price-usd: 358,21,  fee: 3.08,  state: "CLOSE",  profit: 29685.45 },
-  1: {exchange: "Poloniex",  time: "01.10.2017",  type: "BUY",   target: "ZEC",  sum: 4.52419224,  rurUsd: 58.3,  price-usd: 271.00,  fee: 1.84,  state: "OPEN",   profit: ((zecUsd * 4.52419224) - (271 * 4.52419224)).toFixed(2)},
-  2: {exchange: "Poloniex",  time: "05.10.2017",  type: "SELL",  target: "XRP",  sum: 3.43136168,  rurUsd: 58.3,  price-usd: 358,21,  fee: 3.08,  state: "CLOSE",  profit: },
-  3: {exchange: "Poloniex",  time: "28.09.2017",  type: "SELL",  target: "ZEC",  sum: 3.43136168,  rurUsd: 58.3,  price-usd: 358,21,  fee: 3.08,  state: "CLOSE",  profit: }
-  //5: {exchange: "Poloniex",  time: "28.09.2017",  type: "SELL",  target: "ZEC",  sum: 3.43136168,  rurUsd: 58.3,  price-usd: 358,21,  fee: 3.08,  state: "CLOSE",  profit: },
-  //6: {exchange: "Poloniex",  time: "28.09.2017",  type: "SELL",  target: "ZEC",  sum: 3.43136168,  rurUsd: 58.3,  price-usd: 358,21,  fee: 3.08,  state: "CLOSE",  profit: }
+  1: {exchange: "Poloniex", time: "28.09.2017", type: "SELL", target: "ZEC", sum: 3.43136168,    rurUsd: 58.3, price-usd: 358.21,     fee: 3.08, state: "CLOSE", profit: 29685.45 },
+  2: {exchange: "Poloniex", time: "01.10.2017", type: "BUY",  target: "ZEC", sum: 4.52419224,    rurUsd: 58.3, price-usd: 271.00,     fee: 1.84, state: "OPEN",  profit: ((zecUsd * 4.52419224) - (271 * 4.52419224)).toFixed(2)},
+  3: {exchange: "Poloniex", time: "05.10.2017", type: "SELL", target: "XRP", sum: 967.25936446,  rurUsd: 58.3, price-usd: 0.2224003,  fee: 0.54, state: "CLOSE", profit: 1450.06 },
+  4: {exchange: "Poloniex", time: "07.10.2017", type: "BUY",  target: "LBC", sum: 1080.27155361, rurUsd: 58.3, price-usd: 0.1986359,  fee: 0.32, state: "OPEN",  profit: ((lbcUsd * 1080.27155361) - (0.1986359 * 1080.27155361)).toFixed(2)},
+  5: {exchange: "Poloniex", time: "18.10.2017", type: "BUY",  target: "XRP", sum: 763.03461542,  rurUsd: 57.4, price-usd: 0.23062598, fee: 0.37, state: "OPEN",  profit: ((xrpUsd * 763.03461542) - (0.23062598 * 763.03461542)).toFixed(2)},
+  //deal-3: {exchange: "Poloniex",  time: "28.09.2017",  type: "SELL",  target: "ZEC",  sum: 3.43136168,  rurUsd: 58.3,  price-usd: 358.21,  fee: 3.08,  state: "CLOSE",  profit: 0}
+  //5: {exchange: "Poloniex",  time: "28.09.2017",  type: "SELL",  target: "ZEC",  sum: 3.43136168,  rurUsd: 58.3,  price-usd: 358.21,  fee: 3.08,  state: "CLOSE",  profit: },
+  //6: {exchange: "Poloniex",  time: "28.09.2017",  type: "SELL",  target: "ZEC",  sum: 3.43136168,  rurUsd: 58.3,  price-usd: 358.21,  fee: 3.08,  state: "CLOSE",  profit: }
 };
 // ------------ JSON запрос данных по крипте --------------------
 $.getJSON("https://api.coinmarketcap.com/v1/ticker/?limit=400", function(json) {
