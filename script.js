@@ -88,20 +88,20 @@ var coinMining = {
     xmr: 0.0337, 
     zec: 0,  
     dgb: 0,
-    lbc: 168.2061,
+    lbc: 296.7296,
     zcl: 1.6631
   },
   fiat: 6652.93,
-  dateIns: "23.10.2017 11:15"
+  dateIns: "27.10.2017 11:15"
 };
 // ------------ Объект хранящий данные по сделкам на трейде
 var coinTrade = { 
-  1: {exchange: "Poloniex", time: "28.09.2017", type: "SELL", target: "ZEC", sum: 3.43136168,    rurUsd: 58.3, price-usd: 358.21,     fee: 3.08, state: "CLOSE", profit: 29685.45 },
-  2: {exchange: "Poloniex", time: "01.10.2017", type: "BUY",  target: "ZEC", sum: 4.52419224,    rurUsd: 58.3, price-usd: 271.00,     fee: 1.84, state: "OPEN",  profit: ((zecUsd * 4.52419224) - (271 * 4.52419224)).toFixed(2)},
-  3: {exchange: "Poloniex", time: "05.10.2017", type: "SELL", target: "XRP", sum: 967.25936446,  rurUsd: 58.3, price-usd: 0.2224003,  fee: 0.54, state: "CLOSE", profit: 1450.06 },
-  4: {exchange: "Poloniex", time: "07.10.2017", type: "BUY",  target: "LBC", sum: 1080.27155361, rurUsd: 58.3, price-usd: 0.1986359,  fee: 0.32, state: "OPEN",  profit: ((lbcUsd * 1080.27155361) - (0.1986359 * 1080.27155361)).toFixed(2)},
-  5: {exchange: "Poloniex", time: "18.10.2017", type: "BUY",  target: "XRP", sum: 763.03461542,  rurUsd: 57.4, price-usd: 0.23062598, fee: 0.37, state: "OPEN",  profit: ((xrpUsd * 763.03461542) - (0.23062598 * 763.03461542)).toFixed(2)},
-  //deal-3: {exchange: "Poloniex",  time: "28.09.2017",  type: "SELL",  target: "ZEC",  sum: 3.43136168,  rurUsd: 58.3,  price-usd: 358.21,  fee: 3.08,  state: "CLOSE",  profit: 0}
+  deal_1: {exchange: "Poloniex", time: "28.09.2017", type: "SELL", target: "ZEC", sum: 3.43136168,    rurUsd: 58.3, priceUsd: 358.21,     fee: 3.08, state: "CLOSE", profit: 29685.45 },
+  deal_2: {exchange: "Poloniex", time: "01.10.2017", type: "BUY",  target: "ZEC", sum: 4.52419224,    rurUsd: 58.3, priceUsd: 271.00,     fee: 1.84, state: "OPEN",  profit: ((zecUsd * 4.52419224) - (271 * 4.52419224)).toFixed(2)},
+  deal_3: {exchange: "Poloniex", time: "05.10.2017", type: "SELL", target: "XRP", sum: 967.25936446,  rurUsd: 58.3, priceUsd: 0.2224003,  fee: 0.54, state: "CLOSE", profit: 1450.06 },
+  deal_4: {exchange: "Poloniex", time: "07.10.2017", type: "BUY",  target: "LBC", sum: 1080.27155361, rurUsd: 58.3, priceUsd: 0.1986359,  fee: 0.32, state: "OPEN",  profit: ((lbcUsd * 1080.27155361) - (0.1986359 * 1080.27155361)).toFixed(2)},
+  deal_5: {exchange: "Poloniex", time: "18.10.2017", type: "BUY",  target: "XRP", sum: 763.03461542,  rurUsd: 57.4, priceUsd: 0.23062598, fee: 0.37, state: "OPEN",  profit: ((xrpUsd * 763.03461542) - (0.23062598 * 763.03461542)).toFixed(2)},
+  deal_6: {exchange: "Poloniex", time: "28.09.2017",  type: "SELL",  target: "ZEC",  sum: 3.43136168,  rurUsd: 58.3,  priceUsd: 358.21,  fee: 3.08,  state: "CLOSE",  profit: 0}
   //5: {exchange: "Poloniex",  time: "28.09.2017",  type: "SELL",  target: "ZEC",  sum: 3.43136168,  rurUsd: 58.3,  price-usd: 358.21,  fee: 3.08,  state: "CLOSE",  profit: },
   //6: {exchange: "Poloniex",  time: "28.09.2017",  type: "SELL",  target: "ZEC",  sum: 3.43136168,  rurUsd: 58.3,  price-usd: 358.21,  fee: 3.08,  state: "CLOSE",  profit: }
 };
@@ -121,13 +121,13 @@ $.getJSON("https://api.coinmarketcap.com/v1/ticker/?limit=400", function(json) {
       case "DGB":
       case "XRP":
                 if (json[i].symbol == "BTC") { btcUsd = json[i].price_usd;                // Присвоение значений переменным хранящих цену в USD у каждой крипты
-                } else if (json[i].symbol == "ETH") {ethUsd = json[i].price_usd;
-                } else if (json[i].symbol == "XRP") {xrpUsd = json[i].price_usd;
-                } else if (json[i].symbol == "XMR") {xmrUsd = json[i].price_usd;
-                } else if (json[i].symbol == "ZEC") {zecUsd = json[i].price_usd;
-                } else if (json[i].symbol == "DGB") {dgbUsd = json[i].price_usd;
-                } else if (json[i].symbol == "LBC") {lbcUsd = json[i].price_usd;
-                } else if (json[i].symbol == "ZCL") {zclUsd = json[i].price_usd;};
+                } else if (json[i].symbol == "ETH") { ethUsd = json[i].price_usd;
+                } else if (json[i].symbol == "XRP") { xrpUsd = json[i].price_usd;
+                } else if (json[i].symbol == "XMR") { xmrUsd = json[i].price_usd;
+                } else if (json[i].symbol == "ZEC") { zecUsd = json[i].price_usd;
+                } else if (json[i].symbol == "DGB") { dgbUsd = json[i].price_usd;
+                } else if (json[i].symbol == "LBC") { lbcUsd = json[i].price_usd;
+                } else if (json[i].symbol == "ZCL") { zclUsd = json[i].price_usd;};
                 marketCap = json[i].market_cap_usd.replace(/(\d)(?=(\d\d\d)+([^\d]|$))/g, '$1 ');
                 html = $("." + json[i].id).html();
                 html += "<strong class='name'> " + json[i].name + " ("+ json[i].symbol + ")" + "</strong>: <br>";
@@ -150,7 +150,7 @@ $(".zec-total-mining").html(zecTotal + "<br>" + (zecTotal * zecUsd).toFixed(2) +
 $(".dgb-total-mining").html(dgbTotal + "<br>" + (dgbTotal * dgbUsd).toFixed(2) + " $<br>" + (dgbTotal * dgbUsd * rur_usd).toFixed(2) + " руб.<br>");
 $(".lbc-total-mining").html(lbcTotal + "<br>" + (lbcTotal * lbcUsd).toFixed(2) + " $<br>" + (lbcTotal * lbcUsd * rur_usd).toFixed(2) + " руб.<br>");
 $(".zcl-total-mining").html(zclTotal + "<br>" + (zclTotal * zclUsd).toFixed(2) + " $<br>" + (zclTotal * zclUsd * rur_usd).toFixed(2) + " руб.<br>");
-$(".total-mining").html((xmrTotal * xmrUsd + zecTotal * zecUsd + dgbTotal * dgbUsd + lbcTotal * lbcUsd + zclTotal * zclUsd).toFixed(2) + " $<br>" 
+$(".total-mining").html("Данные от:<br>" + coinMining.dateIns + "<br><br>" + (xmrTotal * xmrUsd + zecTotal * zecUsd + dgbTotal * dgbUsd + lbcTotal * lbcUsd + zclTotal * zclUsd).toFixed(2) + " $<br>" 
   + ((xmrTotal * xmrUsd + zecTotal * zecUsd + dgbTotal * dgbUsd + lbcTotal * lbcUsd + zclTotal * zclUsd) * rur_usd).toFixed(2) + " руб.<br>"); 
 bittrexMiningUSD = (coinMining.bittrex.xmr * xmrUsd + coinMining.bittrex.zec * zecUsd + coinMining.bittrex.dgb * dgbUsd + coinMining.bittrex.lbc * lbcUsd + coinMining.bittrex.zcl * zclUsd).toFixed(2);
 poloniexMiningUSD = (coinMining.poloniex.xmr * xmrUsd + coinMining.poloniex.zec * zecUsd + coinMining.poloniex.dgb * dgbUsd + coinMining.poloniex.lbc * lbcUsd + coinMining.poloniex.zcl * zclUsd).toFixed(2);
@@ -160,10 +160,82 @@ $(".bittrex-mining").html(($(".bittrex-mining").html()) + bittrexMiningUSD + " $
 $(".poloniex-mining").html(($(".poloniex-mining").html()) + poloniexMiningUSD + " $<br>" + "("  + (poloniexMiningUSD * rur_usd).toFixed(2) + " руб.)<br><br>");
 $(".mpoolhub-mining").html(($(".mpoolhub-mining").html()) + mpoolhubMiningUSD + " $<br>" + "("  + (mpoolhubMiningUSD * rur_usd).toFixed(2) + " руб.)<br><br>");
 $(".suprnova-mining").html(($(".suprnova-mining").html()) + suprnovaMiningUSD + " $<br>" + "("  + (suprnovaMiningUSD * rur_usd).toFixed(2) + " руб.)<br><br>");
+});
+// ------------ Вывод расчетных данных по таблице трейдинга
+html = $(".time-trade").html()+"<hr>";
+html += "<p class='deal_1'>" + coinTrade.deal_1.time + "</p><br>";
+html += "<p class='deal_2'>" + coinTrade.deal_2.time + "</p><br>";
+html += "<p class='deal_3'>" + coinTrade.deal_3.time + "</p><br>";
+html += "<p class='deal_4'>" + coinTrade.deal_4.time + "</p><br>";
+html += "<p class='deal_5'>" + coinTrade.deal_5.time + "</p><br>";
+html += "<p class='deal_6'>" + coinTrade.deal_6.time + "</p><br>";
+$(".time-trade").html(html);                                            // Вывод столбца даты
+html = $(".type-trade").html()+"<hr>";
+html += "<p class='deal_1'>" + coinTrade.deal_1.type + "</p><br>";
+html += "<p class='deal_2'>" + coinTrade.deal_2.type + "</p><br>";
+html += "<p class='deal_3'>" + coinTrade.deal_3.type + "</p><br>";
+html += "<p class='deal_4'>" + coinTrade.deal_4.type + "</p><br>";
+html += "<p class='deal_5'>" + coinTrade.deal_5.type + "</p><br>";
+html += "<p class='deal_6'>" + coinTrade.deal_6.type + "</p><br>";
+$(".type-trade").html(html);                                            // Вывод столбца сделки
+html = $(".target-trade").html()+"<hr>";
+html += "<p class='deal_1'>" + coinTrade.deal_1.target + "</p><br>";
+html += "<p class='deal_2'>" + coinTrade.deal_2.target + "</p><br>";
+html += "<p class='deal_3'>" + coinTrade.deal_3.target + "</p><br>";
+html += "<p class='deal_4'>" + coinTrade.deal_4.target + "</p><br>";
+html += "<p class='deal_5'>" + coinTrade.deal_5.target + "</p><br>";
+html += "<p class='deal_6'>" + coinTrade.deal_6.target + "</p><br>";
+$(".target-trade").html(html);
+html = $(".sum-trade").html()+"<hr>";
+html += "<p class='deal_1'>" + coinTrade.deal_1.sum + "</p><br>";
+html += "<p class='deal_2'>" + coinTrade.deal_2.sum + "</p><br>";
+html += "<p class='deal_3'>" + coinTrade.deal_3.sum + "</p><br>";
+html += "<p class='deal_4'>" + coinTrade.deal_4.sum + "</p><br>";
+html += "<p class='deal_5'>" + coinTrade.deal_5.sum + "</p><br>";
+html += "<p class='deal_6'>" + coinTrade.deal_6.sum + "</p><br>";
+$(".sum-trade").html(html);
+html = $(".rurUsd-trade").html()+"<hr>";
+html += "<p class='deal_1'>" + coinTrade.deal_1.rurUsd + "</p><br>";
+html += "<p class='deal_2'>" + coinTrade.deal_2.rurUsd + "</p><br>";
+html += "<p class='deal_3'>" + coinTrade.deal_3.rurUsd + "</p><br>";
+html += "<p class='deal_4'>" + coinTrade.deal_4.rurUsd + "</p><br>";
+html += "<p class='deal_5'>" + coinTrade.deal_5.rurUsd + "</p><br>";
+html += "<p class='deal_6'>" + coinTrade.deal_6.rurUsd + "</p><br>";
+$(".rurUsd-trade").html(html);
+html = $(".priceUsd-trade").html()+"<hr>";
+html += "<p class='deal_1'>" + coinTrade.deal_1.priceUsd + "</p><br>";
+html += "<p class='deal_2'>" + coinTrade.deal_2.priceUsd + "</p><br>";
+html += "<p class='deal_3'>" + coinTrade.deal_3.priceUsd + "</p><br>";
+html += "<p class='deal_4'>" + coinTrade.deal_4.priceUsd + "</p><br>";
+html += "<p class='deal_5'>" + coinTrade.deal_5.priceUsd + "</p><br>";
+html += "<p class='deal_6'>" + coinTrade.deal_6.priceUsd + "</p><br>";
+$(".priceUsd-trade").html(html);
+html = $(".fee-trade").html()+"<hr>";
+html += "<p class='deal_1'>" + coinTrade.deal_1.fee + "</p><br>";
+html += "<p class='deal_2'>" + coinTrade.deal_2.fee + "</p><br>";
+html += "<p class='deal_3'>" + coinTrade.deal_3.fee + "</p><br>";
+html += "<p class='deal_4'>" + coinTrade.deal_4.fee + "</p><br>";
+html += "<p class='deal_5'>" + coinTrade.deal_5.fee + "</p><br>";
+html += "<p class='deal_6'>" + coinTrade.deal_6.fee + "</p><br>";
+$(".fee-trade").html(html);
+html = $(".state-trade").html()+"<hr>";
+html += "<p class='deal_1'>" + coinTrade.deal_1.state + "</p><br>";
+html += "<p class='deal_2'>" + coinTrade.deal_2.state + "</p><br>";
+html += "<p class='deal_3'>" + coinTrade.deal_3.state + "</p><br>";
+html += "<p class='deal_4'>" + coinTrade.deal_4.state + "</p><br>";
+html += "<p class='deal_5'>" + coinTrade.deal_5.state + "</p><br>";
+html += "<p class='deal_6'>" + coinTrade.deal_6.state + "</p><br>";
+$(".state-trade").html(html);
+html = $(".profit-trade").html()+"<hr>";
+html += "<p class='deal_1'>" + coinTrade.deal_1.profit + "</p><br>";
+html += "<p class='deal_2'>" + btcUsd + "</p><br>";
+console.log(zecUsd);
+html += "<p class='deal_3'>" + coinTrade.deal_3.profit + "</p><br>";
+html += "<p class='deal_4'>" + coinTrade.deal_4.profit + "</p><br>";
+html += "<p class='deal_5'>" + coinTrade.deal_5.profit + "</p><br>";
+html += "<p class='deal_6'>" + coinTrade.deal_6.profit + "</p><br>";
+$(".profit-trade").html(html);
 
-$(".suprnova-mining").html(($(".suprnova-mining").html()) + suprnovaMiningUSD + " $<br>" + "("  + (suprnovaMiningUSD * rur_usd).toFixed(2) + " руб.)<br><br>");
-
-}); 
 // ------------ Вывод статичных данных майнинга с объекта coinMining
 var xmrTotal = coinMining.bittrex.xmr + coinMining.poloniex.xmr + coinMining.mpoolhub.xmr + coinMining.suprnova.xmr;
 var zecTotal = coinMining.bittrex.zec + coinMining.poloniex.zec + coinMining.mpoolhub.zec + coinMining.suprnova.zec;
