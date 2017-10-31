@@ -48,15 +48,14 @@ div.time_update{
 	font-size: 12px;
 	color: #07574f;
 }
+p.deal_1, p.deal_3 {
+	background-color: lightgrey;
+}
 .xmr-mining strong {
 	background-color: red;
 	display: inline-block;
 }
 .row .col-xs-2 {
-	border: 1px solid green;
-	margin-bottom: 10px;
-}
-.row.xmr-mining {
 	border: 1px solid green;
 	margin-bottom: 10px;
 }
