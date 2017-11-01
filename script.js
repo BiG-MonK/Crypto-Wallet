@@ -172,6 +172,7 @@ html += "<p class='deal_5'>" + coinTrade.deal_5.time + "</p><br>";
 html += "<p class='deal_6'>" + coinTrade.deal_6.time + "</p><br>";
 html += "<p class='deal_7'>" + coinTrade.deal_7.time + "</p><br>";
 $(".time-trade").html(html);                                            // Вывод столбца даты
+
 html = $(".type-trade").html()+"<hr>";
 html += "<p class='deal_1'>" + coinTrade.deal_1.type + "</p><br>";
 html += "<p class='deal_2'>" + coinTrade.deal_2.type + "</p><br>";
@@ -181,6 +182,7 @@ html += "<p class='deal_5'>" + coinTrade.deal_5.type + "</p><br>";
 html += "<p class='deal_6'>" + coinTrade.deal_6.type + "</p><br>";
 html += "<p class='deal_7'>" + coinTrade.deal_7.type + "</p><br>";
 $(".type-trade").html(html);                                            // Вывод столбца сделки
+
 html = $(".target-trade").html()+"<hr>";
 html += "<p class='deal_1'>" + coinTrade.deal_1.target + "</p><br>";
 html += "<p class='deal_2'>" + coinTrade.deal_2.target + "</p><br>";
@@ -189,7 +191,16 @@ html += "<p class='deal_4'>" + coinTrade.deal_4.target + "</p><br>";
 html += "<p class='deal_5'>" + coinTrade.deal_5.target + "</p><br>";
 html += "<p class='deal_6'>" + coinTrade.deal_6.target + "</p><br>";
 html += "<p class='deal_7'>" + coinTrade.deal_7.target + "</p><br>";
-$(".target-trade").html(html);
+$(".target-trade").html(html);                                          // Вывод столбца какую монету
+
+html = $(".invest-trade").html()+"<hr>";
+for (var i = 0; i < Object.keys(coinTrade).length; i++) {
+    html += "<p class='deal_" + (i+1) + "'>" + (coinTrade[Object.keys(coinTrade)[i]]['priceUsd'] * coinTrade[Object.keys(coinTrade)[i]]['sum'] - coinTrade[Object.keys(coinTrade)[i]]['profit'] 
+    / coinTrade[Object.keys(coinTrade)[i]]['rurUsd']).toFixed(2) + " $<br>(" + (coinTrade[Object.keys(coinTrade)[i]]['priceUsd'] * coinTrade[Object.keys(coinTrade)[i]]['sum'] 
+    * coinTrade[Object.keys(coinTrade)[i]]['rurUsd'] - coinTrade[Object.keys(coinTrade)[i]]['profit']).toFixed(2) + " руб.)</p>";  
+}
+$(".invest-trade").html(html);                                          // Вывод столбца Вложил
+
 html = $(".sum-trade").html()+"<hr>";
 html += "<p class='deal_1'>" + coinTrade.deal_1.sum + "</p><br>";
 html += "<p class='deal_2'>" + coinTrade.deal_2.sum + "</p><br>";
@@ -199,6 +210,7 @@ html += "<p class='deal_5'>" + coinTrade.deal_5.sum + "</p><br>";
 html += "<p class='deal_6'>" + coinTrade.deal_6.sum + "</p><br>";
 html += "<p class='deal_7'>" + coinTrade.deal_7.sum + "</p><br>";
 $(".sum-trade").html(html);
+
 html = $(".priceUsd-trade").html()+"<hr>";
 html += "<p class='deal_1'>" + coinTrade.deal_1.priceUsd + "</p><br>";
 html += "<p class='deal_2'>" + coinTrade.deal_2.priceUsd + "</p><br>";
@@ -208,23 +220,15 @@ html += "<p class='deal_5'>" + coinTrade.deal_5.priceUsd + "</p><br>";
 html += "<p class='deal_6'>" + coinTrade.deal_6.priceUsd + "</p><br>";
 html += "<p class='deal_7'>" + coinTrade.deal_7.priceUsd + "</p><br>";
 $(".priceUsd-trade").html(html);
-html = $(".state-trade").html()+"<hr>";
-html += "<p class='deal_1'>" + coinTrade.deal_1.state + "</p><br>";
-html += "<p class='deal_2'>" + coinTrade.deal_2.state + "</p><br>";
-html += "<p class='deal_3'>" + coinTrade.deal_3.state + "</p><br>";
-html += "<p class='deal_4'>" + coinTrade.deal_4.state + "</p><br>";
-html += "<p class='deal_5'>" + coinTrade.deal_5.state + "</p><br>";
-html += "<p class='deal_6'>" + coinTrade.deal_6.state + "</p><br>";
-html += "<p class='deal_7'>" + coinTrade.deal_7.state + "</p><br>";
-$(".state-trade").html(html);
+
 html = $(".profit-trade").html()+"<hr>";
-html += "<p class='deal_1'>" + coinTrade.deal_1.profit + "</p><br>";
-html += "<p class='deal_2'>" + (((zecUsd * coinTrade.deal_2.sum) - (coinTrade.deal_2.priceUsd * coinTrade.deal_2.sum)) * rur_usd).toFixed(2) + "</p><br>";
-html += "<p class='deal_3'>" + coinTrade.deal_3.profit + "</p><br>";
-html += "<p class='deal_4'>" + (((lbcUsd * coinTrade.deal_4.sum) - (coinTrade.deal_4.priceUsd * coinTrade.deal_4.sum)) * rur_usd).toFixed(2) + "</p><br>";
-html += "<p class='deal_5'>" + (((xrpUsd * coinTrade.deal_5.sum) - (coinTrade.deal_5.priceUsd * coinTrade.deal_5.sum)) * rur_usd).toFixed(2) + "</p><br>";
-html += "<p class='deal_6'>" + (((lbcUsd * coinTrade.deal_6.sum) - (coinTrade.deal_6.priceUsd * coinTrade.deal_6.sum)) * rur_usd).toFixed(2) + "</p><br>";
-html += "<p class='deal_7'>" + (((lbcUsd * coinTrade.deal_7.sum) - (coinTrade.deal_7.priceUsd * coinTrade.deal_7.sum)) * rur_usd).toFixed(2) + "</p><br>";
+html += "<p class='deal_1'>" + coinTrade.deal_1.profit + " руб.</p><br>";
+html += "<p class='deal_2'>" + (((zecUsd * coinTrade.deal_2.sum) - (coinTrade.deal_2.priceUsd * coinTrade.deal_2.sum)) * rur_usd).toFixed(2) + " руб.</p><br>";
+html += "<p class='deal_3'>" + coinTrade.deal_3.profit + " руб.</p><br>";
+html += "<p class='deal_4'>" + (((lbcUsd * coinTrade.deal_4.sum) - (coinTrade.deal_4.priceUsd * coinTrade.deal_4.sum)) * rur_usd).toFixed(2) + " руб.</p><br>";
+html += "<p class='deal_5'>" + (((xrpUsd * coinTrade.deal_5.sum) - (coinTrade.deal_5.priceUsd * coinTrade.deal_5.sum)) * rur_usd).toFixed(2) + " руб.</p><br>";
+html += "<p class='deal_6'>" + (((lbcUsd * coinTrade.deal_6.sum) - (coinTrade.deal_6.priceUsd * coinTrade.deal_6.sum)) * rur_usd).toFixed(2) + " руб.</p><br>";
+html += "<p class='deal_7'>" + (((lbcUsd * coinTrade.deal_7.sum) - (coinTrade.deal_7.priceUsd * coinTrade.deal_7.sum)) * rur_usd).toFixed(2) + " руб.</p><br>";
 $(".profit-trade").html(html);
 
 html = "По Сделке №2 на ZEC -----> Вложил: " + ((coinTrade.deal_2.priceUsd * coinTrade.deal_2.sum) * rur_usd).toFixed(2) + " руб.  ......  если продать сейчас: " + ((zecUsd * coinTrade.deal_2.sum) * rur_usd).toFixed(2) + " руб.  ......  Потеря: " + ((coinTrade.deal_2.priceUsd * coinTrade.deal_2.sum * rur_usd) - (zecUsd * coinTrade.deal_2.sum * rur_usd)).toFixed(2) + " руб.<br>";
@@ -261,5 +265,3 @@ $(".zcl-bittrex-mining").html(coinMining.bittrex.zcl);
 $(".zcl-poloniex-mining").html(coinMining.poloniex.zcl);
 $(".zcl-mpoolhub-mining").html(coinMining.mpoolhub.zcl);
 $(".zcl-suprnova-mining").html(coinMining.suprnova.zcl);
-
-

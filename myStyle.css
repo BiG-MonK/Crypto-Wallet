@@ -90,6 +90,9 @@ p.deal_1, p.deal_3 {
 	background-color: lightgrey;
 	padding: 5px;
 }
+.coin:hover {
+	background-color: grey;
+}
 .trade {
 	border: 2px solid green;
 	background-color: lightblue;
