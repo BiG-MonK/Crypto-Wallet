@@ -5,9 +5,10 @@ body{
 input.get_data {
 	width: 100%;
 }
-h2{
+h2,h3 {
 	text-align: center;
 }
+
 img {
 	width: 50px;
 }
@@ -48,16 +49,37 @@ div.time_update{
 	font-size: 12px;
 	color: #07574f;
 }
+.header-trade strong {
+	font-size: 16px;
+}
+.header-trade {
+	text-align: center;
+}
 p.deal_1, p.deal_3 {
 	background-color: lightgrey;
+}
+.profit-result {
+
+}
+.fix-result {
+	font-size: 18px;
+}
+.fix-result > p {
+	font-size: 16px;
+	margin-bottom: 0px;
+}
+.result-trade {
+	text-align: center;	
+	font-size: 24px;
+}
+.result-trade-fiat {
+	font-size: 20px;
+	font-weight: bold;
+	font-style: italic;
 }
 .xmr-mining strong {
 	background-color: red;
 	display: inline-block;
-}
-.row .col-xs-2 {
-	border: 1px solid green;
-	margin-bottom: 10px;
 }
 .row.zec-mining {
 	border: 1px solid green;

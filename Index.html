@@ -38,21 +38,30 @@
                 <input class="get_data" type="button" name="get_data_mining" value="Получить данные майнинга" onclick="getdata()">
                 <hr>
 <!-- _____________________________________________________________ Header раздела трейдинг-->                
-                <div class="row">
+                <div class="row header-trade">
                    <!-- <div class="col-xs-1 exchange-trade">Биржа</div>        на какой Бирже была сделка-->                                
-                    <div class="col-xs-1 time-trade">Дата</div>           <!-- время сделки-->
-                    <div class="col-xs-1 type-trade">Сделка</div>           <!-- вид (купил\продал) сделки-->
-                    <div class="col-xs-1 target-trade">Монета</div>         <!-- какую именно монету-->
-                    <div class="col-xs-2 invest-trade">Вложил</div>
-                    <div class="col-xs-2 sum-trade">Кол-во</div>            <!-- кол-во этой монеты-->
+                    <div class="col-xs-2 time-trade"><strong>Дата</strong></div>           <!-- время сделки-->
+                    <div class="col-xs-1 type-trade"><strong>Сделка</strong></div>           <!-- вид (купил\продал) сделки-->
+                    <div class="col-xs-1 target-trade"><strong>Монета</strong></div>         <!-- какую именно монету-->
+                    <div class="col-xs-2 invest-trade"><strong>Вложил</strong></div>
+                    <div class="col-xs-2 sum-trade"><strong>Кол-во</strong></div>            <!-- кол-во этой монеты-->
                    <!-- <div class="col-xs-1 rurUsd-trade">Курс $</div>         курс $ к рублю на тот момент-->
-                    <div class="col-xs-2 priceUsd-trade">Цена монеты $</div>      <!-- цена этой монеты на тот момент $(в сумме всех моент в $)-->
+                    <div class="col-xs-2 priceUsd-trade"><strong>Цена монеты $</strong></div>      <!-- цена этой монеты на тот момент $(в сумме всех моент в $)-->
                    <!-- <div class="col-xs-1 fee-trade">Fee $</div>             комиссия сделки в монетах (в $)-->
                    <!-- <div class="col-xs-1 state-trade">STATE</div>           состояние сделки закрытая\открытая-->
-                    <div class="col-xs-2 profit-trade">Прибыль</div>         <!-- выгода сделки в реальный момент времени в руб.)(в %))-->
+                    <div class="col-xs-2 profit-trade"><strong>Прибыль</strong></div>         <!-- выгода сделки в реальный момент времени в руб.)(в %))-->
                 </div>
                 <hr>
-                <p class="results"></p>
+                <h3>Итоги по торгам</h3>
+                <div class="row result-trade">
+                    <div class="col-xs-4 profit-result"></div>                    
+                    <div class="col-xs-4 fix-result"></div>
+                    <div class="col-xs-4 fail-result"></div>                                        
+                </div>
+                <br>
+                <div class="result-trade-fiat"></div>
+                <div class="result-invest-trade-fiat"></div>
+                <hr>
 <!-- _______________________________________________________________________ Header раздела майнинг-->
                 <div class="row">
                     <div class="col-xs-2"></div>
