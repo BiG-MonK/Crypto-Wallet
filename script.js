@@ -21,6 +21,7 @@ window.onload = function(){
 // ------------ Курс Фиата RUR/USD RUR/EUR --------------------
 $.getJSON("https://query.yahooapis.com/v1/public/yql?q=select+*+from+yahoo.finance.xchange+where+pair+=+%22USDRUB,EURRUB%22&format=json&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys&callback=", function(json) {
   var html = "";
+  console.log(json);
   rur_usd = json.query.results.rate[0].Rate;
   rur_eur = json.query.results.rate[1].Rate;
   html = "<strong> Курс RUR/USD: " + rur_usd + "</strong><br>";
@@ -202,7 +203,7 @@ var resultTrade = ((((zecUsd * coinTrade.deal_2.sum) - (coinTrade.deal_2.priceUs
                      ((lbcUsd * coinTrade.deal_7.sum) - (coinTrade.deal_7.priceUsd * coinTrade.deal_7.sum))) * rur_usd).toFixed(2);
 var resultTradeFiat = ((zecUsd * coinTrade.deal_2.sum + lbcUsd * coinTrade.deal_4.sum + xrpUsd * coinTrade.deal_5.sum +
                      lbcUsd * coinTrade.deal_6.sum + lbcUsd * coinTrade.deal_7.sum) * rur_usd).toFixed(2);
-if (resultsTrade > 0) {
+if (resultTrade > 0) {
   $(".profit-result").html(resultTrade.replace(/(\d)(?=(\d\d\d)+([^\d]|$))/g, '$1 ') + " руб.<br>");
   $(".fail-result").html("ВСЕ ЗАЕБЦА!! <br>");  
 } else { 
