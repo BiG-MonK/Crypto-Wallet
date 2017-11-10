@@ -37,6 +37,7 @@ $.getJSON("https://www.cbr-xml-daily.ru/daily_json.js", function(json) {
   $("#EUR").html(html.replace('00,0000', EurValue.toFixed(4).replace('.', ',')) + trend(EurValue, EurPrevious) + " " + (EurPrevious - EurValue).toFixed(4).replace('.', ','));
 });
 
+
 //_______________________________________________________________________________ Функция вывода в ячейки таблицы трейдинга
 function coinTradeOutput (col){
   var html = $("." + col + "-trade").html()+"<hr>";;
