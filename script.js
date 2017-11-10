@@ -37,7 +37,6 @@ $.getJSON("https://www.cbr-xml-daily.ru/daily_json.js", function(json) {
   $("#EUR").html(html.replace('00,0000', EurValue.toFixed(4).replace('.', ',')) + trend(EurValue, EurPrevious) + " " + (EurPrevious - EurValue).toFixed(4).replace('.', ','));
 });
 
-
 //_______________________________________________________________________________ Функция вывода в ячейки таблицы трейдинга
 function coinTradeOutput (col){
   var html = $("." + col + "-trade").html()+"<hr>";;
@@ -97,6 +96,7 @@ var coinMining = {
   fiat: 6652.93,
   dateIns: "27.10.2017 11:15"
 };
+
 // ------------ Объект хранящий данные по сделкам на трейде
 var coinTrade = { 
   deal_1: {exchange: "Poloniex", time: "28.09.2017", type: "SELL", target: "ZEC", sum: 3.43136168,    rurUsd: 58.3, priceUsd: 358.21,     fee: 3.08, profit: 29685.45 },
