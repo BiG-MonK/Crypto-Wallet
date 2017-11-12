@@ -97,7 +97,6 @@ var coinMining = {
   dateIns: "27.10.2017 11:15"
 };
 
-
 // ------------ Объект хранящий данные по сделкам на трейде
 var coinTrade = { 
   deal_1: {exchange: "Poloniex", time: "28.09.2017", type: "SELL", target: "ZEC", sum: 3.43136168,    rurUsd: 58.3, priceUsd: 358.21,     fee: 3.08, profit: 29685.45 },
