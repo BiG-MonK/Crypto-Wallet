@@ -1,13 +1,14 @@
 <!DOCTYPE html>
 <html>
 <head>
- <meta charset="utf-8">
- <meta http-equiv="Refresh" content="300" />  <!-- Обновление страницы каждые 5 минут-->
- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
- <link rel="stylesheet" href="myStyle.css" type="text/css"/>
- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
- <script>document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')</script>
- <title>Crypto-Wallet</title>
+    <meta charset="utf-8">
+    <meta http-equiv="Refresh" content="300" />  <!-- Обновление страницы каждые 5 минут-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="myStyle.css" type="text/css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <script>document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')</script>
+    <title>Crypto-Wallet</title>
 </head>
 <body>
     <div class="time_update"></div>
@@ -35,124 +36,141 @@
             </div>
             <div class="col-xs-6">                  <!-- _________________________Середина страницы, майнинг и биржи-->
                 <div class="time"></div>
-           <!--     <input class="get_data" type="button" name="get_data_mining" value="Получить данные майнинга" onclick="getdata()"> -->
+                <!--     <input class="get_data" type="button" name="get_data_mining" value="Получить данные майнинга" onclick="getdata()"> -->
                 <hr>
-<!-- _____________________________________________________________ Header раздела трейдинг-->                
-                <div class="row header-trade">
-                   <!-- <div class="col-xs-1 exchange-trade">Биржа</div>        на какой Бирже была сделка-->                                
-                    <div class="col-xs-2 time-trade"><strong>Дата</strong></div>           <!-- время сделки-->
-                    <div class="col-xs-1 type-trade"><strong>Сделка</strong></div>           <!-- вид (купил\продал) сделки-->
-                    <div class="col-xs-1 target-trade"><strong>Монета</strong></div>         <!-- какую именно монету-->
-                    <div class="col-xs-2 invest-trade"><strong>Вложил</strong></div>
-                    <div class="col-xs-2 sum-trade"><strong>Кол-во</strong></div>            <!-- кол-во этой монеты-->
-                   <!-- <div class="col-xs-1 rurUsd-trade">Курс $</div>         курс $ к рублю на тот момент-->
-                    <div class="col-xs-2 priceUsd-trade"><strong>Курс в $</strong></div>      <!-- цена этой монеты на тот момент $(в сумме всех моент в $)-->
-                   <!-- <div class="col-xs-1 fee-trade">Fee $</div>             комиссия сделки в монетах (в $)-->
-                   <!-- <div class="col-xs-1 state-trade">STATE</div>           состояние сделки закрытая\открытая-->
-                    <div class="col-xs-2 profit-trade"><strong>Прибыль</strong></div>         <!-- выгода сделки в реальный момент времени в руб.)(в %))-->
-                </div>
-                <hr>
-                <h3>Итоги по торгам</h3>
-                <div class="row result-trade">
-                    <div class="col-xs-4 profit-result"></div>                    
-                    <div class="col-xs-4 fix-result"></div>
-                    <div class="col-xs-4 fail-result"></div>                                        
-                </div>
-                <br>
-                <div class="result-trade-fiat"></div>
-                <div class="result-invest-trade-fiat"></div>
-                <hr>
-<!-- _______________________________________________________________________ Header раздела майнинг-->
-                <div class="row">
-                    <p> <h2> !! MininG !!</h2></p><br>
-                    <div class="col-xs-2"></div>
-                    <div class="col-xs-2 bittrex-mining">
-                        <p><img src="img/bittrex_small.jpg"> bittrex:</p>
+
+                <div class="tabs">
+                    <ul class="nav nav-tabs">
+                        <li class="active"><a href="#tab-1" data-toggle="tab">TradinG</a></li>
+                        <li><a href="#tab-2" data-toggle="tab">MininG</a></li>
+                    </ul>
+                    <div class="tab-content">
+    <!-- ________________________________________ Header раздела трейдинг--> 
+                        <div class="tab-pane fade in active" id="tab-1">
+                            <div class="header-trade">
+                                <div class="row">
+                                    <!-- <div class="col-xs-1 exchange-trade">Биржа</div>        на какой Бирже была сделка-->                                
+                                    <div class="col-xs-2 time-trade"><strong>Дата</strong></div>           <!-- время сделки-->
+                                    <div class="col-xs-1 type-trade"><strong>Сделка</strong></div>           <!-- вид (купил\продал) сделки-->
+                                    <div class="col-xs-1 target-trade"><strong>Монета</strong></div>         <!-- какую именно монету-->
+                                    <div class="col-xs-2 invest-trade"><strong>Вложил</strong></div>
+                                    <div class="col-xs-2 sum-trade"><strong>Кол-во</strong></div>            <!-- кол-во этой монеты-->
+                                    <!-- <div class="col-xs-1 rurUsd-trade">Курс $</div>         курс $ к рублю на тот момент-->
+                                    <div class="col-xs-2 priceUsd-trade"><strong>Курс в $</strong></div>      <!-- цена этой монеты на тот момент $(в сумме всех моент в $)-->
+                                    <!-- <div class="col-xs-1 fee-trade">Fee $</div>             комиссия сделки в монетах (в $)-->
+                                    <!-- <div class="col-xs-1 state-trade">STATE</div>           состояние сделки закрытая\открытая-->
+                                    <div class="col-xs-2 profit-trade"><strong>Прибыль</strong></div>         <!-- выгода сделки в реальный момент времени в руб.)(в %))-->
+                                </div>
+                                <hr>
+                                <h3>Итоги по торгам</h3>
+                                <div class="row result-trade">
+                                    <div class="col-xs-4 profit-result"></div>                    
+                                    <div class="col-xs-4 fix-result"></div>
+                                    <div class="col-xs-4 fail-result"></div>                                        
+                                </div>
+                                <br>
+                                <div class="result-trade-fiat"></div>
+                                <div class="result-invest-trade-fiat"></div>
+                                <hr>
+                            </div>
+                        </div>
+    <!-- ________________________________________ Header раздела майнинг-->
+                        <div class="tab-pane fade" id="tab-2">
+                            <div class="header-mininng">
+                                <div class="row">
+                                    <p> <h2> !! MininG !!</h2></p><br>
+                                    <div class="col-xs-2"></div>
+                                    <div class="col-xs-2 bittrex-mining">
+                                        <p><img src="img/bittrex_small.jpg"> bittrex:</p>
+                                    </div>
+                                    <div class="col-xs-2 poloniex-mining">
+                                        <p><img src="img/poloniex_small.jpg"> poloniex:</p>
+                                    </div>
+                                    <div class="col-xs-2 mpoolhub-mining">
+                                        <p><img src="img/miningpoolhub.png"> mpoolhub:</p>
+                                    </div>
+                                    <div class="col-xs-2 suprnova-mining">
+                                        <p><img src="img/suprnova.png"> suprnova:</p>
+                                    </div>
+                                    <div class="col-xs-2 total-mining"></div>
+                                </div>
+                                <div class="row xmr-mining">                               <!-- 2 строка заполнения майнинга МОНЕТА XMR-->
+                                    <div class="col-xs-2">
+                                        <img src="img/monero.png"> XMR
+                                    </div>
+                                    <div class="col-xs-2 xmr-bittrex-mining"></div>
+                                    <div class="col-xs-2 xmr-poloniex-mining"></div>
+                                    <div class="col-xs-2 xmr-mpoolhub-mining"></div>
+                                    <div class="col-xs-2 xmr-suprnova-mining"></div>
+                                    <div class="col-xs-2 xmr-total-mining"></div>
+                                </div>
+                                <div class="row zec-mining">                               <!-- 2 строка заполнения майнинга МОНЕТА ZEC-->
+                                    <div class="col-xs-2">
+                                        <img src="img/zcash.png"> ZEC
+                                    </div>
+                                    <div class="col-xs-2 zec-bittrex-mining"></div>
+                                    <div class="col-xs-2 zec-poloniex-mining"></div>
+                                    <div class="col-xs-2 zec-mpoolhub-mining"></div>
+                                    <div class="col-xs-2 zec-suprnova-mining"></div>
+                                    <div class="col-xs-2 zec-total-mining"></div>
+                                </div>
+                                <div class="row dgb-mining">                               <!-- 2 строка заполнения майнинга МОНЕТА DGB-->
+                                    <div class="col-xs-2">
+                                        <img src="img/digibyte.png"> DGB
+                                    </div>
+                                    <div class="col-xs-2 dgb-bittrex-mining"></div>
+                                    <div class="col-xs-2 dgb-poloniex-mining"></div>
+                                    <div class="col-xs-2 dgb-mpoolhub-mining"></div>
+                                    <div class="col-xs-2 dgb-suprnova-mining"></div>
+                                    <div class="col-xs-2 dgb-total-mining"></div>
+                                </div>
+                                <div class="row lbc-mining">                               <!-- 2 строка заполнения майнинга МОНЕТА LBC-->
+                                    <div class="col-xs-2">
+                                        <img src="img/library-credit.png"> LBC
+                                    </div>
+                                    <div class="col-xs-2 lbc-bittrex-mining"></div>
+                                    <div class="col-xs-2 lbc-poloniex-mining"></div>
+                                    <div class="col-xs-2 lbc-mpoolhub-mining"></div>
+                                    <div class="col-xs-2 lbc-suprnova-mining"></div>
+                                    <div class="col-xs-2 lbc-total-mining"></div>
+                                </div>
+                                <div class="row zcl-mining">                               <!-- 2 строка заполнения майнинга МОНЕТА ZCL-->
+                                    <div class="col-xs-2">
+                                        <img src="img/zclassic.png"> ZCL
+                                    </div>
+                                    <div class="col-xs-2 zcl-bittrex-mining"></div>
+                                    <div class="col-xs-2 zcl-poloniex-mining"></div>
+                                    <div class="col-xs-2 zcl-mpoolhub-mining"></div>
+                                    <div class="col-xs-2 zcl-suprnova-mining"></div>
+                                    <div class="col-xs-2 zcl-total-mining"></div>
+                                </div>
+                                <hr>
+                            </div>
+                        </div>
                     </div>
-                    <div class="col-xs-2 poloniex-mining">
-                        <p><img src="img/poloniex_small.jpg"> poloniex:</p>
-                    </div>
-                    <div class="col-xs-2 mpoolhub-mining">
-                        <p><img src="img/miningpoolhub.png"> mpoolhub:</p>
-                    </div>
-                    <div class="col-xs-2 suprnova-mining">
-                        <p><img src="img/suprnova.png"> suprnova:</p>
-                    </div>
-                    <div class="col-xs-2 total-mining"></div>
-                </div>
-                <div class="row xmr-mining">                               <!-- 2 строка заполнения майнинга МОНЕТА XMR-->
-                    <div class="col-xs-2">
-                        <img src="img/monero.png"> XMR
-                    </div>
-                    <div class="col-xs-2 xmr-bittrex-mining"></div>
-                    <div class="col-xs-2 xmr-poloniex-mining"></div>
-                    <div class="col-xs-2 xmr-mpoolhub-mining"></div>
-                    <div class="col-xs-2 xmr-suprnova-mining"></div>
-                    <div class="col-xs-2 xmr-total-mining"></div>
-                </div>
-                <div class="row zec-mining">                               <!-- 2 строка заполнения майнинга МОНЕТА ZEC-->
-                    <div class="col-xs-2">
-                        <img src="img/zcash.png"> ZEC
-                    </div>
-                    <div class="col-xs-2 zec-bittrex-mining"></div>
-                    <div class="col-xs-2 zec-poloniex-mining"></div>
-                    <div class="col-xs-2 zec-mpoolhub-mining"></div>
-                    <div class="col-xs-2 zec-suprnova-mining"></div>
-                    <div class="col-xs-2 zec-total-mining"></div>
-                </div>
-                <div class="row dgb-mining">                               <!-- 2 строка заполнения майнинга МОНЕТА DGB-->
-                    <div class="col-xs-2">
-                        <img src="img/digibyte.png"> DGB
-                    </div>
-                    <div class="col-xs-2 dgb-bittrex-mining"></div>
-                    <div class="col-xs-2 dgb-poloniex-mining"></div>
-                    <div class="col-xs-2 dgb-mpoolhub-mining"></div>
-                    <div class="col-xs-2 dgb-suprnova-mining"></div>
-                    <div class="col-xs-2 dgb-total-mining"></div>
-                </div>
-                <div class="row lbc-mining">                               <!-- 2 строка заполнения майнинга МОНЕТА LBC-->
-                    <div class="col-xs-2">
-                        <img src="img/library-credit.png"> LBC
-                    </div>
-                    <div class="col-xs-2 lbc-bittrex-mining"></div>
-                    <div class="col-xs-2 lbc-poloniex-mining"></div>
-                    <div class="col-xs-2 lbc-mpoolhub-mining"></div>
-                    <div class="col-xs-2 lbc-suprnova-mining"></div>
-                    <div class="col-xs-2 lbc-total-mining"></div>
-                </div>
-                <div class="row zcl-mining">                               <!-- 2 строка заполнения майнинга МОНЕТА ZCL-->
-                    <div class="col-xs-2">
-                        <img src="img/zclassic.png"> ZCL
-                    </div>
-                    <div class="col-xs-2 zcl-bittrex-mining"></div>
-                    <div class="col-xs-2 zcl-poloniex-mining"></div>
-                    <div class="col-xs-2 zcl-mpoolhub-mining"></div>
-                    <div class="col-xs-2 zcl-suprnova-mining"></div>
-                    <div class="col-xs-2 zcl-total-mining"></div>
-                </div>
-                <hr>
+                </div>                    
+            </div> 
 <!-- _____________________________________________________________ Правый столбец данных о крипте-->
-            </div>
             <div class="col-xs-3">
-               <div class="coin">
-                   <div class="zcash left"><img src="img/zcash.png"></div>  
-                   <div class="zcash right"></div>  
-               </div>
-               <div class="coin">
-                   <div class="digibyte left"><img src="img/digibyte.png"></div>
-                   <div class="digibyte right"></div>
-               </div>
-               <div class="coin">
-                <div class="library-credit left"><img src="img/library-credit.png"></div>
-                <div class="library-credit right"></div>
-            </div>
-            <div class="coin">
-                <div class="zclassic left"><img src="img/zclassic.png"></div> 
-                <div class="zclassic right"></div>
+                <div class="coin">
+                    <div class="zcash left"><img src="img/zcash.png"></div>  
+                    <div class="zcash right"></div>  
+                </div>
+                <div class="coin">
+                    <div class="digibyte left"><img src="img/digibyte.png"></div>
+                    <div class="digibyte right"></div>
+                </div>
+                <div class="coin">
+                    <div class="library-credit left"><img src="img/library-credit.png"></div>
+                    <div class="library-credit right"></div>
+                </div>
+                <div class="coin">
+                    <div class="zclassic left"><img src="img/zclassic.png"></div> 
+                    <div class="zclassic right"></div>
+                </div>
             </div>
         </div>
     </div>
-</div>
 <script src="script.js"></script>
 </body>
 </html>
