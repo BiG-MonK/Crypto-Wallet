@@ -11,33 +11,35 @@ h2,h3 {
 img {
 	width: 50px;
 }
-strong.USD {
+
+strong.USD {                         /* Виджеты по монетам по бокам страницы*/
 	font-size: 26px;
 	color: green;
 }
-strong.rur_usd{
+strong.rur_usd{                     	/* */
 	font-size: 20px;
 	color: #0c8ac4;
 }
-strong.name {
+strong.name {							/* */
 	font-size: 24px;
 }
-strong.price_btc {
+strong.price_btc {						/* */
 	font-size: 16px;
 }
-strong.rank {
+strong.rank {							/* */
 	font-size: 16px;
 }
-strong.change_coin{
+strong.change_coin{						/* */
 	font-size: 18px;
 }
-strong.market_cap{
+strong.market_cap{						/* */
 	font-size: 14px;
 	font-style: italic;
 }
-strong.name {
+strong.name {                         /* Виджеты по монетам по бокам страницы*/
 	line-height: 0px;
 }
+
 div.time {
 	font-size: 26px;
 	font-style: italic;
@@ -47,6 +49,10 @@ div.time {
 div.time_update{
 	font-size: 12px;
 	color: #07574f;
+}
+ul.nav-tabs li {                     /* Вкладки Торги и Майнинг*/
+	font-size: 18px;
+	width: 50%;
 }
 .header-trade strong {
 	font-size: 16px;
@@ -79,6 +85,10 @@ p.deal_1, p.deal_3 {
 .xmr-mining strong {
 	background-color: red;
 	display: inline-block;
+}
+.row.xmr-mining {
+	border: 1px solid green;
+	margin-bottom: 10px;
 }
 .row.zec-mining {
 	border: 1px solid green;
