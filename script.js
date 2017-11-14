@@ -69,14 +69,14 @@ var coinMining = {
     xmr: 0,
     zec: 2.83596232,
     dgb: 0,
-    lbc: 0,
+    lbc: 489.136847,
     zcl: 0
   },
   poloniex: {
     xmr: 0, 
     zec: 0,  
     dgb: 417.44101617,
-    lbc: 1016.663574,
+    lbc: 0,
     zcl: 0
   },
   mpoolhub: {
@@ -99,16 +99,16 @@ var coinMining = {
 
 // ------------ Объект хранящий данные по сделкам на трейде
 var coinTrade = { 
-  deal_1: {exchange: "Poloniex", time: "28.09.2017", type: "SELL", target: "ZEC", sum: 3.43136168,    rurUsd: 58.3, priceUsd: 358.21,     fee: 3.08, profit: 29685.45 },
-  deal_2: {exchange: "Poloniex", time: "01.10.2017", type: "BUY",  target: "ZEC", sum: 4.52419224,    rurUsd: 58.3, priceUsd: 271.00,     fee: 1.84, profit: 0},
-  deal_3: {exchange: "Poloniex", time: "29.09.2017", type: "BUY",  target: "ZEC", sum: 0.38919474,    rurUsd: 58,   priceUsd: 316.45,     fee: 0, profit: 0},
-  deal_4: {exchange: "Poloniex", time: "29.09.2017", type: "BUY",  target: "ZEC", sum: 0.13144910,    rurUsd: 58,   priceUsd: 271.50,     fee: 0, profit: 0},
-  deal_5: {exchange: "Poloniex", time: "02.10.2017", type: "BUY",  target: "ZEC", sum: 0.32736176,    rurUsd: 58,   priceUsd: 260.69,     fee: 0, profit: 0},
-  deal_6: {exchange: "Poloniex", time: "05.10.2017", type: "SELL", target: "XRP", sum: 967.25936446,  rurUsd: 58.3, priceUsd: 0.2224003,  fee: 0.54, profit: 1450.06 },
-  deal_7: {exchange: "Poloniex", time: "07.10.2017", type: "BUY",  target: "LBC", sum: 1080.27155361, rurUsd: 58.3, priceUsd: 0.1986359,  fee: 0.32, profit: 0},
-  deal_8: {exchange: "Poloniex", time: "18.10.2017", type: "BUY",  target: "XRP", sum: 763.03461542,  rurUsd: 57.4, priceUsd: 0.23062598, fee: 0.37, profit: 0},
-  deal_9: {exchange: "Poloniex", time: "24.10.2017", type: "BUY",  target: "LBC", sum: 748.32188244,  rurUsd: 57.5, priceUsd: 0.14573286, fee: 0.10, profit: 0},
-  deal_10: {exchange: "Poloniex", time: "24.10.2017", type: "BUY",  target: "LBC", sum: 1637.585271,   rurUsd: 57.5, priceUsd: 0.14791140, fee: 0.60, profit: 0}
+  deal_1: {exchange: "Poloniex", time: "28.09.2017", type: "SELL", target: "ZEC", sum: 3.43136168,    rurUsd: 58.3,  priceUsd: 358.21,      profit: 29685.45 },
+  deal_2: {exchange: "Poloniex", time: "01.10.2017", type: "BUY",  target: "ZEC", sum: 4.52419224,    rurUsd: 58.3,  priceUsd: 271.00,      profit: 0},
+  deal_3: {exchange: "Poloniex", time: "29.09.2017", type: "BUY",  target: "ZEC", sum: 0.38919474,    rurUsd: 58,    priceUsd: 316.45,      profit: 0},
+  deal_4: {exchange: "Poloniex", time: "29.09.2017", type: "BUY",  target: "ZEC", sum: 0.13144910,    rurUsd: 58,    priceUsd: 271.50,      profit: 0},
+  deal_5: {exchange: "Poloniex", time: "02.10.2017", type: "BUY",  target: "ZEC", sum: 0.32736176,    rurUsd: 58,    priceUsd: 260.69,      profit: 0},
+  deal_6: {exchange: "Poloniex", time: "05.10.2017", type: "SELL", target: "XRP", sum: 967.25936446,  rurUsd: 58.3,  priceUsd: 0.2224003,   profit: 1450.06 },
+  deal_7: {exchange: "Poloniex", time: "07.10.2017", type: "BUY",  target: "LBC", sum: 1080.27155361, rurUsd: 58.3,  priceUsd: 0.1986359,   profit: 0},
+  deal_8: {exchange: "Poloniex", time: "18.10.2017", type: "BUY",  target: "XRP", sum: 763.03461542,  rurUsd: 57.4,  priceUsd: 0.23062598,  profit: 0},
+  deal_9: {exchange: "Poloniex", time: "24.10.2017", type: "BUY",  target: "LBC", sum: 748.32188244,  rurUsd: 57.5,  priceUsd: 0.14573286,  profit: 0},
+  deal_10: {exchange: "Poloniex", time: "24.10.2017", type: "BUY",  target: "LBC", sum: 1637.585271,   rurUsd: 57.5,  priceUsd: 0.14791140,  profit: 0}
 };
 // ------------ Переменные для сокращения записи в выводе расчетных данных таблицы майнинга
 var xmrTotal = coinMining.bittrex.xmr + coinMining.poloniex.xmr + coinMining.mpoolhub.xmr + coinMining.suprnova.xmr;
@@ -201,14 +201,19 @@ html += "<p class='deal_10'>" + (((lbcUsd * coinTrade.deal_10.sum) - (coinTrade.
 $(".profit-trade").html(html);
 
 // ------------ Вывод расчетных данных по итогам  трейдинга
-$(".fix-result").html("<p>Реализовано: </p>" + (coinTrade.deal_1.profit + coinTrade.deal_3.profit).toFixed(2).replace(/(\d)(?=(\d\d\d)+([^\d]|$))/g, '$1 ') + " руб.<br>");
+$(".fix-result").html("<p>Реализовано: </p>" + (coinTrade.deal_1.profit + coinTrade.deal_6.profit).toFixed(2).replace(/(\d)(?=(\d\d\d)+([^\d]|$))/g, '$1 ') + " руб.<br>");
 var resultTrade = ((((zecUsd * coinTrade.deal_2.sum) - (coinTrade.deal_2.priceUsd * coinTrade.deal_2.sum)) + 
-                     ((lbcUsd * coinTrade.deal_4.sum) - (coinTrade.deal_4.priceUsd * coinTrade.deal_4.sum)) +
-                     ((xrpUsd * coinTrade.deal_5.sum) - (coinTrade.deal_5.priceUsd * coinTrade.deal_5.sum)) +
-                     ((lbcUsd * coinTrade.deal_6.sum) - (coinTrade.deal_6.priceUsd * coinTrade.deal_6.sum)) +
-                     ((lbcUsd * coinTrade.deal_7.sum) - (coinTrade.deal_7.priceUsd * coinTrade.deal_7.sum))) * rur_usd).toFixed(2);
-var resultTradeFiat = ((zecUsd * coinTrade.deal_2.sum + lbcUsd * coinTrade.deal_4.sum + xrpUsd * coinTrade.deal_5.sum +
-                     lbcUsd * coinTrade.deal_6.sum + lbcUsd * coinTrade.deal_7.sum) * rur_usd).toFixed(2);
+                     ((zecUsd * coinTrade.deal_3.sum) - (coinTrade.deal_3.priceUsd * coinTrade.deal_3.sum)) +
+                     ((zecUsd * coinTrade.deal_4.sum) - (coinTrade.deal_4.priceUsd * coinTrade.deal_4.sum)) +
+                     ((zecUsd * coinTrade.deal_5.sum) - (coinTrade.deal_5.priceUsd * coinTrade.deal_5.sum)) +
+                     ((lbcUsd * coinTrade.deal_7.sum) - (coinTrade.deal_7.priceUsd * coinTrade.deal_7.sum)) +
+                     ((xrpUsd * coinTrade.deal_8.sum) - (coinTrade.deal_8.priceUsd * coinTrade.deal_8.sum)) +
+                     ((lbcUsd * coinTrade.deal_9.sum) - (coinTrade.deal_9.priceUsd * coinTrade.deal_9.sum)) +
+                     ((lbcUsd * coinTrade.deal_10.sum) - (coinTrade.deal_10.priceUsd * coinTrade.deal_10.sum))) * rur_usd).toFixed(2);
+var resultTradeFiat = ((zecUsd * coinTrade.deal_2.sum + zecUsd * coinTrade.deal_3.sum + 
+                        zecUsd * coinTrade.deal_4.sum + zecUsd * coinTrade.deal_5.sum + 
+                        lbcUsd * coinTrade.deal_7.sum + xrpUsd * coinTrade.deal_8.sum +
+                        lbcUsd * coinTrade.deal_9.sum + lbcUsd * coinTrade.deal_10.sum) * rur_usd).toFixed(2);
 if (resultTrade > 0) {
   $(".profit-result").html(resultTrade.replace(/(\d)(?=(\d\d\d)+([^\d]|$))/g, '$1 ') + " руб.<br>");
   $(".fail-result").html("ВСЕ ЗАЕБЦА!! <br>");  
