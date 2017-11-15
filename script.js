@@ -87,10 +87,10 @@ var coinMining = {
     zcl: 0
   },
   suprnova: {
-    xmr: 0.0337, 
+    xmr: 0.03370000, 
     zec: 0,  
     dgb: 0,
-    lbc: 929.0773,
+    lbc: 929.077300,
     zcl: 1.6631
   },
   fiat: 6652.93,
@@ -111,11 +111,11 @@ var coinTrade = {
   deal_10: {exchange: "Poloniex", time: "24.10.2017", type: "BUY",  target: "LBC", sum: 1637.585271,   rurUsd: 57.5,  priceUsd: 0.14791140,  profit: 0}
 };
 // ------------ Переменные для сокращения записи в выводе расчетных данных таблицы майнинга
-var xmrTotal = coinMining.bittrex.xmr + coinMining.poloniex.xmr + coinMining.mpoolhub.xmr + coinMining.suprnova.xmr;
-var zecTotal = coinMining.bittrex.zec + coinMining.poloniex.zec + coinMining.mpoolhub.zec + coinMining.suprnova.zec;
-var dgbTotal = coinMining.bittrex.dgb + coinMining.poloniex.dgb + coinMining.mpoolhub.dgb + coinMining.suprnova.dgb;
-var lbcTotal = coinMining.bittrex.lbc + coinMining.poloniex.lbc + coinMining.mpoolhub.lbc + coinMining.suprnova.lbc;
-var zclTotal = coinMining.bittrex.zcl + coinMining.poloniex.zcl + coinMining.mpoolhub.zcl + coinMining.suprnova.zcl;
+var xmrTotal = (coinMining.bittrex.xmr + coinMining.poloniex.xmr + coinMining.mpoolhub.xmr + coinMining.suprnova.xmr).toFixed(8);
+var zecTotal = (coinMining.bittrex.zec + coinMining.poloniex.zec + coinMining.mpoolhub.zec + coinMining.suprnova.zec).toFixed(8);
+var dgbTotal = (coinMining.bittrex.dgb + coinMining.poloniex.dgb + coinMining.mpoolhub.dgb + coinMining.suprnova.dgb).toFixed(8);
+var lbcTotal = (coinMining.bittrex.lbc + coinMining.poloniex.lbc + coinMining.mpoolhub.lbc + coinMining.suprnova.lbc).toFixed(8);
+var zclTotal = (coinMining.bittrex.zcl + coinMining.poloniex.zcl + coinMining.mpoolhub.zcl + coinMining.suprnova.zcl).toFixed(8);
 
 //_______________________________________________________________________________ JSON запрос данных по крипте
 $.getJSON("https://api.coinmarketcap.com/v1/ticker/?limit=400", function(json) {
