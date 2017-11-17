@@ -158,6 +158,7 @@ $.getJSON("https://api.coinmarketcap.com/v1/ticker/?limit=400", function(json) {
                 $(".right." + json[i].id).html(html);
               }
             }
+            
 // ------------ Вывод расчетных данных по таблице майнинга
 $(".xmr-total-mining").html(xmrTotal + "<br>" + (xmrTotal * xmrUsd).toFixed(2) + " $<br>" + (xmrTotal * xmrUsd * rur_usd).toFixed(2) + " руб.<br>");
 $(".zec-total-mining").html(zecTotal + "<br>" + (zecTotal * zecUsd).toFixed(2) + " $<br>" + (zecTotal * zecUsd * rur_usd).toFixed(2) + " руб.<br>");
