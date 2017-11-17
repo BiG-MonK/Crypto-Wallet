@@ -158,7 +158,7 @@ $.getJSON("https://api.coinmarketcap.com/v1/ticker/?limit=400", function(json) {
                 $(".right." + json[i].id).html(html);
               }
             }
-            
+
 // ------------ Вывод расчетных данных по таблице майнинга
 $(".xmr-total-mining").html(xmrTotal + "<br>" + (xmrTotal * xmrUsd).toFixed(2) + " $<br>" + (xmrTotal * xmrUsd * rur_usd).toFixed(2) + " руб.<br>");
 $(".zec-total-mining").html(zecTotal + "<br>" + (zecTotal * zecUsd).toFixed(2) + " $<br>" + (zecTotal * zecUsd * rur_usd).toFixed(2) + " руб.<br>");
@@ -218,6 +218,7 @@ if (resultTrade > 0) {
         };
 $(".result-trade-fiat").html("Если все продать сейчас: " + resultTradeFiat.replace(/(\d)(?=(\d\d\d)+([^\d]|$))/g, '$1 ') + " руб.<br>");
 });
+
 // ------------ Вывод статичных данных майнинга с объекта coinMining
 $(".xmr-bittrex-mining").html(coinMining.bittrex.xmr);  
 $(".xmr-poloniex-mining").html(coinMining.poloniex.xmr);
