@@ -11,7 +11,6 @@ h2,h3 {
 img {
 	width: 50px;
 }
-
 strong.USD {                         /* Виджеты по монетам по бокам страницы*/
 	font-size: 26px;
 	color: green;
@@ -81,7 +80,7 @@ ul.nav-tabs li {                     /* Вкладки Торги и Майни�
 }
 .xmr-mining strong {
 	background-color: red;
-	display: inline-block;
+	display: inline-block;	
 }
 .row.xmr-mining {
 	border: 1px solid green;
