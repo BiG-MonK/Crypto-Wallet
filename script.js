@@ -1,6 +1,6 @@
 //_______________________________________________________________________________ Функция отображения времени на стрнице с тикающими сек
 window.onload = function(){
-  (function(){
+// (function(){
     var dt = new Date();                               // Переменная обьект, необходим для работы со временем
     var time = dt.getHours() + ':' + dt.getMinutes() + ':' + dt.getSeconds();
     var time_update = "";
@@ -15,7 +15,7 @@ window.onload = function(){
     $(".time").html(time);
     $(".time_update").html(time_update);
     window.setTimeout(arguments.callee, 1000);
-  })();
+//  })();
 };
 
 //_______________________________________________________________________________ Курс Фиата RUR/USD RUR/EUR
