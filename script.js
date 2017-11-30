@@ -1,58 +1,3 @@
-//_______________________________________________________________________________ Функция отображения времени на стрнице с тикающими сек
-window.onload = function(){
-// (function(){
-    var dt = new Date();                               // Переменная обьект, необходим для работы со временем
-    var time = dt.getHours() + ':' + dt.getMinutes() + ':' + dt.getSeconds();
-    var time_update = "";
-    var secReal = Math.floor(dt.getTime() / 1000);     // Приведение настоящего времени в число с сокращением до секунд
-    var secLast = secReal - secUpdateGL;               // Разница в секундах после обновления данных по катировкам монет
-    if (secLast == secReal){ 
-      secLast = 0;                                     // Пока нет ответа по JSON отображается огромное число - это исправление на нули
-    }
-    var minLast = Math.floor(secLast / 60);            // Разница в минутах после обновления данных по катировкам монет
-    secLast = secLast - (minLast * 60);                // Остатки секунд после вычета минут
-    time_update = "<strong>Данные устарели на: " + minLast + ":" + secLast + "</strong> ";
-    $(".time").html(time);
-    $(".time_update").html(time_update);
-    window.setTimeout(arguments.callee, 1000);
-//  })();
-};
-
-//_______________________________________________________________________________ Курс Фиата RUR/USD RUR/EUR
-$.getJSON("https://www.cbr-xml-daily.ru/daily_json.js", function(json) {
-  var html = "";
-  var UsdValue = json.Valute.USD.Value;
-  var UsdPrevious = json.Valute.USD.Previous;
-  var EurValue = json.Valute.EUR.Value;
-  var EurPrevious = json.Valute.EUR.Previous;
-  rur_usd = json.Valute.USD.Value;
-  rur_eur = json.Valute.EUR.Value;
-  function trend(current, previous) {
-    if (current > previous) return ' ▲';
-    if (current < previous) return ' ▼';
-    return '';
-  }
-  html = $("#USD").html();
-  $("#USD").html(html.replace('00,0000', UsdValue.toFixed(4).replace('.', ',')) + trend(UsdValue, UsdPrevious) + " " + (UsdPrevious - UsdValue).toFixed(4).replace('.', ','));
-  $("#EUR").html(html.replace('00,0000', EurValue.toFixed(4).replace('.', ',')) + trend(EurValue, EurPrevious) + " " + (EurPrevious - EurValue).toFixed(4).replace('.', ','));
-});
-
-//_______________________________________________________________________________ JSON запрос данных по крипте на биржу Poloniex
-$.getJSON("https://poloniex.com/public?command=returnTicker", function(json) {
-  var html = "";
-  var USDT_BTC = json.USDT_BTC;
-  console.log(USDT_BTC);
-});
-
-//_______________________________________________________________________________ Функция вывода в ячейки таблицы трейдинга
-function coinTradeOutput (col){
-  var html = $("." + col + "-trade").html()+"<hr>";;
-  for (var i = 0; i < Object.keys(coinTrade).length; i++ ){
-    html += "<p class='deal_" + (i+1) + "'>" + coinTrade[Object.keys(coinTrade)[i]][col] + "</p><br>"; 
-  }
-  return html;
-}
-
 //-----------------  Объявление переменных
 var secUpdateGL = 0;              // Глобальная переменная хранящая в дальнейшем разницу в сек после обновления данных по монетам
 var btcUsd = 0;                   // Глобальная переменная хранящая цену BTC в USD
@@ -105,19 +50,10 @@ var coinMining = {
 };
 
 // ------------ Объект хранящий данные по сделкам на трейде
-var coinTradeFix = { 
-  deal_1: {exchange: "Poloniex", time: "28.09.2017", type: "SELL", target: "ZEC", sum: 3.43136168,    rurUsd: 58.3,  priceUsd: 358.21,     profit: 29685.45 },
-  deal_2: {exchange: "Poloniex", time: "05.10.2017", type: "SELL", target: "XRP", sum: 967.25936446,  rurUsd: 58.3,  priceUsd: 0.2224003,  profit: 1450.06 },
-  deal_3: {exchange: "Poloniex", time: "15.11.2017", type: "SELL", target: "LBC", sum: 1080.27155361, rurUsd: 60.2,  priceUsd: 0.2023055,  profit: 646.35},
-  deal_4: {exchange: "Poloniex", time: "15.11.2017", type: "SELL", target: "LBC", sum: 2387.04464376, rurUsd: 60.2,  priceUsd: 0.2023055,  profit: 8859.29}
-};
-
 var coinTrade = { 
-  deal_1: {exchange: "Poloniex", time: "01.10.2017", type: "BUY",  target: "ZEC", sum: 4.52419224,    rurUsd: 58.3,  priceUsd: 271.00,      profit: 0},
-  deal_2: {exchange: "Poloniex", time: "29.09.2017", type: "BUY",  target: "ZEC", sum: 0.38919474,    rurUsd: 58,    priceUsd: 316.45,      profit: 0},
-  deal_3: {exchange: "Poloniex", time: "29.09.2017", type: "BUY",  target: "ZEC", sum: 0.13144910,    rurUsd: 58,    priceUsd: 271.50,      profit: 0},
-  deal_4: {exchange: "Poloniex", time: "02.10.2017", type: "BUY",  target: "ZEC", sum: 0.32736176,    rurUsd: 58,    priceUsd: 260.69,      profit: 0},
-  deal_5: {exchange: "Poloniex", time: "18.10.2017", type: "BUY",  target: "XRP", sum: 763.03461542,  rurUsd: 57.4,  priceUsd: 0.23062598,  profit: 0},
+  deal_1: {exchange: "Poloniex", time: "30.11.2017", type: "BUY",  target: "ETH", sum: 2,              rurUsd: 58.4,  priceUsd: 445.58},
+  deal_2: {exchange: "Poloniex", time: "30.11.2017", type: "BUY",  target: "ZEC", sum: 3,              rurUsd: 58.4,  priceUsd: 319.66},
+  deal_3: {exchange: "Poloniex", time: "30.11.2017", type: "BUY",  target: "XRP", sum: 4338.84447816,  rurUsd: 58.4,  priceUsd: 0.24455311}
 };
 // ------------ Переменные для сокращения записи в выводе расчетных данных таблицы майнинга
 var xmrTotal = (coinMining.bittrex.xmr + coinMining.poloniex.xmr + coinMining.mpoolhub.xmr + coinMining.suprnova.xmr).toFixed(8);
@@ -126,7 +62,133 @@ var dgbTotal = (coinMining.bittrex.dgb + coinMining.poloniex.dgb + coinMining.mp
 var lbcTotal = (coinMining.bittrex.lbc + coinMining.poloniex.lbc + coinMining.mpoolhub.lbc + coinMining.suprnova.lbc).toFixed(8);
 var zclTotal = (coinMining.bittrex.zcl + coinMining.poloniex.zcl + coinMining.mpoolhub.zcl + coinMining.suprnova.zcl).toFixed(8);
 
-//_______________________________________________________________________________ JSON запрос данных по крипте
+//_______________________________________________________________________________ Функция вывода в ячейки таблицы трейдинга
+function coinTradeOutput (col){
+  var html = $("." + col + "-trade").html()+"<hr>";;
+  for (var i = 0; i < Object.keys(coinTrade).length; i++ ){
+    html += "<p class='deal_" + (i+1) + "'>" + coinTrade[Object.keys(coinTrade)[i]][col] + "</p><br>"; 
+  }
+  return html;
+}
+
+//_______________________________________________________________________________ Функция отображения времени на стрнице с тикающими сек
+window.onload = function(){
+  (function(){
+    var dt = new Date();                               // Переменная обьект, необходим для работы со временем
+    var time = dt.getHours() + ':' + dt.getMinutes() + ':' + dt.getSeconds();
+    $(".time").html(time);
+    window.setTimeout(arguments.callee, 1000);
+  })();  
+  //тут можно писать другой код JS
+
+
+
+}; //конец функции onload
+
+//_______________________________________________________________________________ Курс Фиата RUR/USD RUR/EUR
+$.getJSON("https://www.cbr-xml-daily.ru/daily_json.js", function(json) {
+  var html = "";
+  var UsdValue = json.Valute.USD.Value;
+  var UsdPrevious = json.Valute.USD.Previous;
+  var EurValue = json.Valute.EUR.Value;
+  var EurPrevious = json.Valute.EUR.Previous;
+  rur_usd = json.Valute.USD.Value;
+  rur_eur = json.Valute.EUR.Value;
+  function trend(current, previous) {
+    if (current > previous) return ' ▲';
+    if (current < previous) return ' ▼';
+    return '';
+  }
+  html = $("#USD").html();
+  $("#USD").html(html.replace('00,0000', UsdValue.toFixed(4).replace('.', ',')) + trend(UsdValue, UsdPrevious) + " " + (UsdPrevious - UsdValue).toFixed(4).replace('.', ','));
+  $("#EUR").html(html.replace('00,0000', EurValue.toFixed(4).replace('.', ',')) + trend(EurValue, EurPrevious) + " " + (EurPrevious - EurValue).toFixed(4).replace('.', ','));
+}); // Конец JSON запроса на курс фиата
+
+//_______________________________________________________________________________ JSON запрос данных по крипте на биржу Poloniex
+$.getJSON("https://poloniex.com/public?command=returnTicker", function(json) {
+  btcUsd = json.USDT_BTC.last;
+  $('.left.bitcoin strong.USD').text((+btcUsd).toFixed(2) + " USD");
+  $('.left.bitcoin strong.rur_usd').text("(" + (btcUsd * rur_usd).toFixed(2) + " RUR)");
+  ethUsd = json.USDT_ETH.last;
+  $('.left.ethereum strong.USD').text((+ethUsd).toFixed(2) + " USD");
+  $('.left.ethereum strong.rur_usd').text("(" + (ethUsd * rur_usd).toFixed(2) + " RUR)");
+  $('.left.ethereum strong.price_btc').text((ethUsd / btcUsd).toFixed(8) + " BTC");
+  zecUsd = json.USDT_ZEC.last;  
+  $('.left.zcash strong.USD').text((+zecUsd).toFixed(2) + " USD");
+  $('.left.zcash strong.rur_usd').text("(" + (zecUsd * rur_usd).toFixed(2) + " RUR)");
+  $('.left.zcash strong.price_btc').text((zecUsd / btcUsd).toFixed(8) + " BTC");  
+  xmrUsd = json.USDT_XMR.last;
+  $('.left.monero strong.USD').text((+xmrUsd).toFixed(2) + " USD");
+  $('.left.monero strong.rur_usd').text("(" + (xmrUsd * rur_usd).toFixed(2) + " RUR)");
+  $('.left.monero strong.price_btc').text((xmrUsd / btcUsd).toFixed(8) + " BTC");  
+  xrpUsd = json.USDT_XRP.last;
+  $('.left.ripple strong.USD').text((+xrpUsd).toFixed(4) + " USD");
+  $('.left.ripple strong.rur_usd').text("(" + (xrpUsd * rur_usd).toFixed(2) + " RUR)");
+  $('.left.ripple strong.price_btc').text((xrpUsd / btcUsd).toFixed(8) + " BTC"); 
+  dgbUsd = json.BTC_DGB.last * btcUsd;
+  $('.left.digibyte strong.USD').text((+dgbUsd).toFixed(4) + " USD");
+  $('.left.digibyte strong.rur_usd').text("(" + (dgbUsd * rur_usd).toFixed(2) + " RUR)");
+  $('.left.digibyte strong.price_btc').text((dgbUsd / btcUsd).toFixed(8) + " BTC"); 
+  lbcUsd = json.BTC_LBC.last * btcUsd;
+  $('.left.library-credit strong.USD').text((+lbcUsd).toFixed(4) + " USD");
+  $('.left.library-credit strong.rur_usd').text("(" + (lbcUsd * rur_usd).toFixed(2) + " RUR)");
+  $('.left.library-credit strong.price_btc').text((lbcUsd / btcUsd).toFixed(8) + " BTC"); 
+
+  $('.left.zclassic strong.USD').text((+zclUsd).toFixed(4) + " USD");
+  $('.left.zclassic strong.rur_usd').text("(" + (zclUsd * rur_usd).toFixed(2) + " RUR)");
+  $('.left.zclassic strong.price_btc').text((zclUsd / btcUsd).toFixed(8) + " BTC");
+
+// ------------ Вывод расчетных данных по таблице майнинга
+$(".xmr-total-mining").html(xmrTotal + "<br>" + (xmrTotal * xmrUsd).toFixed(2) + " $<br>" + (xmrTotal * xmrUsd * rur_usd).toFixed(2) + " руб.<br>");
+$(".zec-total-mining").html(zecTotal + "<br>" + (zecTotal * zecUsd).toFixed(2) + " $<br>" + (zecTotal * zecUsd * rur_usd).toFixed(2) + " руб.<br>");
+$(".dgb-total-mining").html(dgbTotal + "<br>" + (dgbTotal * dgbUsd).toFixed(2) + " $<br>" + (dgbTotal * dgbUsd * rur_usd).toFixed(2) + " руб.<br>");
+$(".lbc-total-mining").html(lbcTotal + "<br>" + (lbcTotal * lbcUsd).toFixed(2) + " $<br>" + (lbcTotal * lbcUsd * rur_usd).toFixed(2) + " руб.<br>");
+$(".zcl-total-mining").html(zclTotal + "<br>" + (zclTotal * zclUsd).toFixed(2) + " $<br>" + (zclTotal * zclUsd * rur_usd).toFixed(2) + " руб.<br>");
+$(".total-mining").html("Данные от:<br>" + coinMining.dateIns + "<br><br>" + (xmrTotal * xmrUsd + zecTotal * zecUsd + dgbTotal * dgbUsd + lbcTotal * lbcUsd + zclTotal * zclUsd).toFixed(2) + " $<br>" 
+  + ((xmrTotal * xmrUsd + zecTotal * zecUsd + dgbTotal * dgbUsd + lbcTotal * lbcUsd + zclTotal * zclUsd) * rur_usd).toFixed(2) + " руб.<br>"); 
+bittrexMiningUSD = (coinMining.bittrex.xmr * xmrUsd + coinMining.bittrex.zec * zecUsd + coinMining.bittrex.dgb * dgbUsd + coinMining.bittrex.lbc * lbcUsd + coinMining.bittrex.zcl * zclUsd).toFixed(2);
+poloniexMiningUSD = (coinMining.poloniex.xmr * xmrUsd + coinMining.poloniex.zec * zecUsd + coinMining.poloniex.dgb * dgbUsd + coinMining.poloniex.lbc * lbcUsd + coinMining.poloniex.zcl * zclUsd).toFixed(2);
+mpoolhubMiningUSD = (coinMining.mpoolhub.xmr * xmrUsd + coinMining.mpoolhub.zec * zecUsd + coinMining.mpoolhub.dgb * dgbUsd + coinMining.mpoolhub.lbc * lbcUsd + coinMining.mpoolhub.zcl * zclUsd).toFixed(2);
+suprnovaMiningUSD = (coinMining.suprnova.xmr * xmrUsd + coinMining.suprnova.zec * zecUsd + coinMining.suprnova.dgb * dgbUsd + coinMining.suprnova.lbc * lbcUsd + coinMining.suprnova.zcl * zclUsd).toFixed(2);
+$(".bittrex-mining").html("<p><img src='img/bittrex_small.jpg'> bittrex:</p>" + bittrexMiningUSD + " $<br>" + "(" + (bittrexMiningUSD * rur_usd).toFixed(2) + " руб.)<br><br>");
+$(".poloniex-mining").html("<p><img src='img/poloniex_small.jpg'> poloniex:</p>" + poloniexMiningUSD + " $<br>" + "("  + (poloniexMiningUSD * rur_usd).toFixed(2) + " руб.)<br><br>");
+$(".mpoolhub-mining").html("<p><img src='img/miningpoolhub.png'> mpoolhub:</p>" + mpoolhubMiningUSD + " $<br>" + "("  + (mpoolhubMiningUSD * rur_usd).toFixed(2) + " руб.)<br><br>");
+$(".suprnova-mining").html("<p><img src='img/suprnova.png'> suprnova:</p>" + suprnovaMiningUSD + " $<br>" + "("  + (suprnovaMiningUSD * rur_usd).toFixed(2) + " руб.)<br><br>");
+
+// ------------ Вывод расчетных данных по таблице трейдинга
+html = $(".invest-trade").html()+"<hr>";
+for (var i = 0; i < Object.keys(coinTrade).length; i++) {
+  html += "<p class='deal_" + (i+1) + "'>" + (coinTrade[Object.keys(coinTrade)[i]]['priceUsd'] * coinTrade[Object.keys(coinTrade)[i]]['sum']).toFixed(2) + " $<br>(" + 
+    (coinTrade[Object.keys(coinTrade)[i]]['priceUsd'] * coinTrade[Object.keys(coinTrade)[i]]['sum'] * coinTrade[Object.keys(coinTrade)[i]]['rurUsd']).toFixed(2) + " руб.)</p>";  
+  }
+$(".invest-trade").html(html);                              // Вывод столбца Вложил
+$(".time-trade").html(coinTradeOutput("time"));             // Вывод столбца даты
+$(".type-trade").html(coinTradeOutput("type"));             // Вывод столбца даты
+$(".target-trade").html(coinTradeOutput("target"));         // Вывод какую монету купил\продал
+$(".sum-trade").html(coinTradeOutput("sum"));               // Вывод кол-ва этой монеты
+$(".priceUsd-trade").html(coinTradeOutput("priceUsd"));     // Вывод цены этой монеты на момент покупки в $
+html = $(".profit-trade").html()+"<hr>";
+html += "<p class='deal_1'>" + (((ethUsd * coinTrade.deal_1.sum) - (coinTrade.deal_1.priceUsd * coinTrade.deal_1.sum)) * rur_usd).toFixed(2) + " руб.</p><br>";
+html += "<p class='deal_2'>" + (((zecUsd * coinTrade.deal_2.sum) - (coinTrade.deal_2.priceUsd * coinTrade.deal_2.sum)) * rur_usd).toFixed(2) + " руб.</p><br>";
+html += "<p class='deal_3'>" + (((xrpUsd * coinTrade.deal_3.sum) - (coinTrade.deal_3.priceUsd * coinTrade.deal_3.sum)) * rur_usd).toFixed(2) + " руб.</p><br>";
+$(".profit-trade").html(html);
+
+// ------------ Вывод расчетных данных по итогам  трейдинга
+var resultTrade = ((((ethUsd * coinTrade.deal_1.sum) - (coinTrade.deal_1.priceUsd * coinTrade.deal_1.sum)) + 
+                     ((zecUsd * coinTrade.deal_2.sum) - (coinTrade.deal_2.priceUsd * coinTrade.deal_2.sum)) +
+                     ((xrpUsd * coinTrade.deal_3.sum) - (coinTrade.deal_3.priceUsd * coinTrade.deal_3.sum))) * rur_usd).toFixed(2);
+var resultTradeFiat = ((ethUsd * coinTrade.deal_1.sum + zecUsd * coinTrade.deal_2.sum + xrpUsd * coinTrade.deal_3.sum) * rur_usd).toFixed(2);
+if (resultTrade > 0) {
+  $(".profit-result").html(resultTrade.replace(/(\d)(?=(\d\d\d)+([^\d]|$))/g, '$1 ') + " руб.<br>");
+  $(".fail-result").html("ВСЕ ЗАЕБЦА!! <br>");  
+} else { 
+    $(".fail-result").html(resultTrade.replace(/(\d)(?=(\d\d\d)+([^\d]|$))/g, '$1 ') + " руб.<br>");
+    $(".profit-result").html("ТУТ ПРОЕБ !! <br>");
+        };
+$(".result-trade-fiat").html("Если все продать сейчас: " + resultTradeFiat.replace(/(\d)(?=(\d\d\d)+([^\d]|$))/g, '$1 ') + " руб.<br>");
+}); // конец функции AJAX
+
+//_______________________________________________________________________________ JSON запрос данных по крипте c coinmarketcap
 $.getJSON("https://api.coinmarketcap.com/v1/ticker/?limit=400", function(json) {
   var html = "";
   var marketCap = "";                               // Переменная для разбиения на разряды большого числа
@@ -136,7 +198,7 @@ $.getJSON("https://api.coinmarketcap.com/v1/ticker/?limit=400", function(json) {
       case "BTC":
       case "ETH":
       case "XMR":
-      case "ZCL":
+      case "ZCL": zclUsd = json[i].price_usd;
       case "LBC":
       case "ZEC":
       case "DGB":
@@ -153,9 +215,9 @@ $.getJSON("https://api.coinmarketcap.com/v1/ticker/?limit=400", function(json) {
                 html = $("." + json[i].id).html();
                 html += "<strong class='name'> " + json[i].name + " ("+ json[i].symbol + ")" + "</strong>: <br>";
                 html += "<strong class='rank'> Rank: " + json[i].rank + " </strong><br>";
-                html += "<strong class='USD'>" + json[i].price_usd + " USD</strong><br>";
-                html += "<strong class='rur_usd'>(" + (json[i].price_usd * rur_usd).toFixed(2) + " RUR)</strong><br>";
-                html += "<strong class='price_btc'>" + json[i].price_btc + " BTC</strong><br>";
+                html += "<strong class='USD'> </strong><br>";
+                html += "<strong class='rur_usd'> </strong><br>";
+                html += "<strong class='price_btc'> </strong><br>";
                 $(".left." + json[i].id).html(html);
                 html = "";
                 html += "Market Cap: <br><strong class='market_cap'>" + marketCap + " USD</strong><br><br>";
@@ -165,64 +227,6 @@ $.getJSON("https://api.coinmarketcap.com/v1/ticker/?limit=400", function(json) {
                 $(".right." + json[i].id).html(html);
               } // конец цикл switch
             } // конец цикла for
-
-// ------------ Вывод расчетных данных по таблице майнинга
-$(".xmr-total-mining").html(xmrTotal + "<br>" + (xmrTotal * xmrUsd).toFixed(2) + " $<br>" + (xmrTotal * xmrUsd * rur_usd).toFixed(2) + " руб.<br>");
-$(".zec-total-mining").html(zecTotal + "<br>" + (zecTotal * zecUsd).toFixed(2) + " $<br>" + (zecTotal * zecUsd * rur_usd).toFixed(2) + " руб.<br>");
-$(".dgb-total-mining").html(dgbTotal + "<br>" + (dgbTotal * dgbUsd).toFixed(2) + " $<br>" + (dgbTotal * dgbUsd * rur_usd).toFixed(2) + " руб.<br>");
-$(".lbc-total-mining").html(lbcTotal + "<br>" + (lbcTotal * lbcUsd).toFixed(2) + " $<br>" + (lbcTotal * lbcUsd * rur_usd).toFixed(2) + " руб.<br>");
-$(".zcl-total-mining").html(zclTotal + "<br>" + (zclTotal * zclUsd).toFixed(2) + " $<br>" + (zclTotal * zclUsd * rur_usd).toFixed(2) + " руб.<br>");
-$(".total-mining").html("Данные от:<br>" + coinMining.dateIns + "<br><br>" + (xmrTotal * xmrUsd + zecTotal * zecUsd + dgbTotal * dgbUsd + lbcTotal * lbcUsd + zclTotal * zclUsd).toFixed(2) + " $<br>" 
-  + ((xmrTotal * xmrUsd + zecTotal * zecUsd + dgbTotal * dgbUsd + lbcTotal * lbcUsd + zclTotal * zclUsd) * rur_usd).toFixed(2) + " руб.<br>"); 
-bittrexMiningUSD = (coinMining.bittrex.xmr * xmrUsd + coinMining.bittrex.zec * zecUsd + coinMining.bittrex.dgb * dgbUsd + coinMining.bittrex.lbc * lbcUsd + coinMining.bittrex.zcl * zclUsd).toFixed(2);
-poloniexMiningUSD = (coinMining.poloniex.xmr * xmrUsd + coinMining.poloniex.zec * zecUsd + coinMining.poloniex.dgb * dgbUsd + coinMining.poloniex.lbc * lbcUsd + coinMining.poloniex.zcl * zclUsd).toFixed(2);
-mpoolhubMiningUSD = (coinMining.mpoolhub.xmr * xmrUsd + coinMining.mpoolhub.zec * zecUsd + coinMining.mpoolhub.dgb * dgbUsd + coinMining.mpoolhub.lbc * lbcUsd + coinMining.mpoolhub.zcl * zclUsd).toFixed(2);
-suprnovaMiningUSD = (coinMining.suprnova.xmr * xmrUsd + coinMining.suprnova.zec * zecUsd + coinMining.suprnova.dgb * dgbUsd + coinMining.suprnova.lbc * lbcUsd + coinMining.suprnova.zcl * zclUsd).toFixed(2);
-$(".bittrex-mining").html(($(".bittrex-mining").html()) + bittrexMiningUSD + " $<br>" + "(" + (bittrexMiningUSD * rur_usd).toFixed(2) + " руб.)<br><br>");
-$(".poloniex-mining").html(($(".poloniex-mining").html()) + poloniexMiningUSD + " $<br>" + "("  + (poloniexMiningUSD * rur_usd).toFixed(2) + " руб.)<br><br>");
-$(".mpoolhub-mining").html(($(".mpoolhub-mining").html()) + mpoolhubMiningUSD + " $<br>" + "("  + (mpoolhubMiningUSD * rur_usd).toFixed(2) + " руб.)<br><br>");
-$(".suprnova-mining").html(($(".suprnova-mining").html()) + suprnovaMiningUSD + " $<br>" + "("  + (suprnovaMiningUSD * rur_usd).toFixed(2) + " руб.)<br><br>");
-
-// ------------ Вывод расчетных данных по таблице трейдинга
-html = $(".invest-trade").html()+"<hr>";
-for (var i = 0; i < Object.keys(coinTrade).length; i++) {
-  html += "<p class='deal_" + (i+1) + "'>" + (coinTrade[Object.keys(coinTrade)[i]]['priceUsd'] * coinTrade[Object.keys(coinTrade)[i]]['sum'] - coinTrade[Object.keys(coinTrade)[i]]['profit'] 
-    / coinTrade[Object.keys(coinTrade)[i]]['rurUsd']).toFixed(2) + " $<br>(" + (coinTrade[Object.keys(coinTrade)[i]]['priceUsd'] * coinTrade[Object.keys(coinTrade)[i]]['sum'] 
-    * coinTrade[Object.keys(coinTrade)[i]]['rurUsd'] - coinTrade[Object.keys(coinTrade)[i]]['profit']).toFixed(2) + " руб.)</p>";  
-  }
-$(".invest-trade").html(html);                              // Вывод столбца Вложил
-$(".time-trade").html(coinTradeOutput("time"));             // Вывод столбца даты
-$(".type-trade").html(coinTradeOutput("type"));             // Вывод столбца даты
-$(".target-trade").html(coinTradeOutput("target"));         // Вывод какую монету купил\продал
-$(".sum-trade").html(coinTradeOutput("sum"));               // Вывод кол-ва этой монеты
-$(".priceUsd-trade").html(coinTradeOutput("priceUsd"));     // Вывод цены этой монеты на момент покупки в $
-html = $(".profit-trade").html()+"<hr>";
-html += "<p class='deal_1'>" + (((zecUsd * coinTrade.deal_1.sum) - (coinTrade.deal_1.priceUsd * coinTrade.deal_1.sum)) * rur_usd).toFixed(2) + " руб.</p><br>";
-html += "<p class='deal_2'>" + (((zecUsd * coinTrade.deal_2.sum) - (coinTrade.deal_2.priceUsd * coinTrade.deal_2.sum)) * rur_usd).toFixed(2) + " руб.</p><br>";
-html += "<p class='deal_3'>" + (((zecUsd * coinTrade.deal_3.sum) - (coinTrade.deal_3.priceUsd * coinTrade.deal_3.sum)) * rur_usd).toFixed(2) + " руб.</p><br>";
-html += "<p class='deal_4'>" + (((zecUsd * coinTrade.deal_4.sum) - (coinTrade.deal_4.priceUsd * coinTrade.deal_4.sum)) * rur_usd).toFixed(2) + " руб.</p><br>";
-html += "<p class='deal_5'>" + (((xrpUsd * coinTrade.deal_5.sum) - (coinTrade.deal_5.priceUsd * coinTrade.deal_5.sum)) * rur_usd).toFixed(2) + " руб.</p><br>";
-$(".profit-trade").html(html);
-
-// ------------ Вывод расчетных данных по итогам  трейдинга
-$(".fix-result").html("<p>Реализовано: </p>" + (coinTradeFix.deal_1.profit + coinTradeFix.deal_2.profit + coinTradeFix.deal_3.profit
-                                                 + coinTradeFix.deal_4.profit).toFixed(2).replace(/(\d)(?=(\d\d\d)+([^\d]|$))/g, '$1 ') + " руб.<br>");
-var resultTrade = ((((zecUsd * coinTrade.deal_1.sum) - (coinTrade.deal_1.priceUsd * coinTrade.deal_1.sum)) + 
-                     ((zecUsd * coinTrade.deal_2.sum) - (coinTrade.deal_2.priceUsd * coinTrade.deal_2.sum)) +
-                     ((zecUsd * coinTrade.deal_3.sum) - (coinTrade.deal_3.priceUsd * coinTrade.deal_3.sum)) +
-                     ((zecUsd * coinTrade.deal_4.sum) - (coinTrade.deal_4.priceUsd * coinTrade.deal_4.sum)) +
-                     ((xrpUsd * coinTrade.deal_5.sum) - (coinTrade.deal_5.priceUsd * coinTrade.deal_5.sum))) * rur_usd).toFixed(2);
-var resultTradeFiat = ((zecUsd * coinTrade.deal_1.sum + zecUsd * coinTrade.deal_2.sum + 
-                        zecUsd * coinTrade.deal_3.sum + zecUsd * coinTrade.deal_4.sum + 
-                        xrpUsd * coinTrade.deal_5.sum) * rur_usd).toFixed(2);
-if (resultTrade > 0) {
-  $(".profit-result").html(resultTrade.replace(/(\d)(?=(\d\d\d)+([^\d]|$))/g, '$1 ') + " руб.<br>");
-  $(".fail-result").html("ВСЕ ЗАЕБЦА!! <br>");  
-} else { 
-    $(".fail-result").html(resultTrade.replace(/(\d)(?=(\d\d\d)+([^\d]|$))/g, '$1 ') + " руб.<br>");
-    $(".profit-result").html("ТУТ ПРОЕБ !! <br>");
-        };
-$(".result-trade-fiat").html("Если все продать сейчас: " + resultTradeFiat.replace(/(\d)(?=(\d\d\d)+([^\d]|$))/g, '$1 ') + " руб.<br>");
 }); // конец функции AJAX
 
 // ------------ Вывод статичных данных майнинга с объекта coinMining

@@ -11,7 +11,6 @@
     <title>Crypto-Wallet</title>
 </head>
 <body>
-    <div class="time_update"></div>
     <div class="container-fluid">
         <div class="row">
             <div class="col-xs-3">                          <!-- Левый столбец данных о крипте-->
@@ -41,12 +40,12 @@
 
                 <div class="tabs">
                     <ul class="nav nav-tabs">
-                        <li class="active"><a href="#tab-2" data-toggle="tab">MininG</a></li>
-                        <li><a href="#tab-1" data-toggle="tab">TradinG</a></li>                        
+                        <li><a href="#tab-2" data-toggle="tab">MininG</a></li>
+                        <li class="active"><a href="#tab-1" data-toggle="tab">TradinG</a></li>                        
                     </ul>
                     <div class="tab-content">
     <!-- ________________________________________ Header раздела трейдинг--> 
-                        <div class="tab-pane fade" id="tab-1">
+                        <div class="tab-pane fade in active" id="tab-1">
                             <div class="header-trade">
                                 <div class="row">
                                     <hr>
@@ -66,32 +65,23 @@
                                 <h3>Итоги по торгам</h3>
                                 <div class="row result-trade">
                                     <div class="col-xs-4 profit-result"></div>                    
-                                    <div class="col-xs-4 fix-result"></div>
+                                    <div class="col-xs-4"></div>
                                     <div class="col-xs-4 fail-result"></div>                                        
                                 </div>
                                 <br>
                                 <div class="result-trade-fiat"></div>
-                                <div class="result-invest-trade-fiat"></div>
                             </div>
                         </div>
     <!-- ________________________________________ Header раздела майнинг-->
-                        <div class="tab-pane fade in active" id="tab-2">
+                        <div class="tab-pane fade" id="tab-2">
                             <div class="header-mininng">
                                 <div class="row">
                                     <hr>
                                     <div class="col-xs-2"></div>
-                                    <div class="col-xs-2 bittrex-mining">
-                                        <p><img src="img/bittrex_small.jpg"> bittrex:</p>
-                                    </div>
-                                    <div class="col-xs-2 poloniex-mining">
-                                        <p><img src="img/poloniex_small.jpg"> poloniex:</p>
-                                    </div>
-                                    <div class="col-xs-2 mpoolhub-mining">
-                                        <p><img src="img/miningpoolhub.png"> mpoolhub:</p>
-                                    </div>
-                                    <div class="col-xs-2 suprnova-mining">
-                                        <p><img src="img/suprnova.png"> suprnova:</p>
-                                    </div>
+                                    <div class="col-xs-2 bittrex-mining"></div>
+                                    <div class="col-xs-2 poloniex-mining"></div>
+                                    <div class="col-xs-2 mpoolhub-mining"></div>
+                                    <div class="col-xs-2 suprnova-mining"></div>
                                     <div class="col-xs-2 total-mining"></div>
                                 </div>
                                 <div class="row xmr-mining">                               <!-- 2 строка заполнения майнинга МОНЕТА XMR-->
