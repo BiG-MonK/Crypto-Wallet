@@ -37,6 +37,13 @@ $.getJSON("https://www.cbr-xml-daily.ru/daily_json.js", function(json) {
   $("#EUR").html(html.replace('00,0000', EurValue.toFixed(4).replace('.', ',')) + trend(EurValue, EurPrevious) + " " + (EurPrevious - EurValue).toFixed(4).replace('.', ','));
 });
 
+//_______________________________________________________________________________ JSON запрос данных по крипте на биржу Poloniex
+$.getJSON("https://poloniex.com/public?command=returnTicker", function(json) {
+  var html = "";
+  var USDT_BTC = json.USDT_BTC;
+  console.log(USDT_BTC);
+});
+
 //_______________________________________________________________________________ Функция вывода в ячейки таблицы трейдинга
 function coinTradeOutput (col){
   var html = $("." + col + "-trade").html()+"<hr>";;
@@ -67,9 +74,9 @@ var suprnovaMiningUSD;
 var coinMining = { 
   bittrex: {
     xmr: 0,
-    zec: 2.83596232,
+    zec: 3.20414772,
     dgb: 417.44101617,
-    lbc: 1951.44512767,
+    lbc: 2336.60447063,
     zcl: 0
   },
   poloniex: {
@@ -80,7 +87,7 @@ var coinMining = {
     zcl: 0
   },
   mpoolhub: {
-    xmr: 0.71062058, 
+    xmr: 0.77315377, 
     zec: 0,  
     dgb: 0,
     lbc: 0,
@@ -90,11 +97,11 @@ var coinMining = {
     xmr: 0.03370000, 
     zec: 0,  
     dgb: 0,
-    lbc: 205.2442,
+    lbc: 86.5692,
     zcl: 1.6631
   },
   fiat: 6652.93,
-  dateIns: "21.11.2017 16:45"
+  dateIns: "30.11.2017 16:30"
 };
 
 // ------------ Объект хранящий данные по сделкам на трейде
@@ -134,14 +141,14 @@ $.getJSON("https://api.coinmarketcap.com/v1/ticker/?limit=400", function(json) {
       case "ZEC":
       case "DGB":
       case "XRP":
-                if (json[i].symbol == "BTC") { btcUsd = json[i].price_usd;                // Присвоение значений переменным хранящих цену в USD у каждой крипты
+/*                if (json[i].symbol == "BTC") { btcUsd = json[i].price_usd;                // Присвоение значений переменным хранящих цену в USD у каждой крипты
                 } else if (json[i].symbol == "ETH") { ethUsd = json[i].price_usd;
                 } else if (json[i].symbol == "XRP") { xrpUsd = json[i].price_usd;
                 } else if (json[i].symbol == "XMR") { xmrUsd = json[i].price_usd;
                 } else if (json[i].symbol == "ZEC") { zecUsd = json[i].price_usd;
                 } else if (json[i].symbol == "DGB") { dgbUsd = json[i].price_usd;
                 } else if (json[i].symbol == "LBC") { lbcUsd = json[i].price_usd;
-                } else if (json[i].symbol == "ZCL") { zclUsd = json[i].price_usd;};
+                } else if (json[i].symbol == "ZCL") { zclUsd = json[i].price_usd;};*/
                 marketCap = json[i].market_cap_usd.replace(/(\d)(?=(\d\d\d)+([^\d]|$))/g, '$1 ');
                 html = $("." + json[i].id).html();
                 html += "<strong class='name'> " + json[i].name + " ("+ json[i].symbol + ")" + "</strong>: <br>";
@@ -156,8 +163,8 @@ $.getJSON("https://api.coinmarketcap.com/v1/ticker/?limit=400", function(json) {
                 html += "24h: <strong class='change_coin'> " + json[i].percent_change_24h + "%</strong><br>";
                 html += "Week: <strong class='change_coin'> " + json[i].percent_change_7d + "%</strong><br>";
                 $(".right." + json[i].id).html(html);
-              }
-            }
+              } // конец цикл switch
+            } // конец цикла for
 
 // ------------ Вывод расчетных данных по таблице майнинга
 $(".xmr-total-mining").html(xmrTotal + "<br>" + (xmrTotal * xmrUsd).toFixed(2) + " $<br>" + (xmrTotal * xmrUsd * rur_usd).toFixed(2) + " руб.<br>");
@@ -184,7 +191,6 @@ for (var i = 0; i < Object.keys(coinTrade).length; i++) {
     * coinTrade[Object.keys(coinTrade)[i]]['rurUsd'] - coinTrade[Object.keys(coinTrade)[i]]['profit']).toFixed(2) + " руб.)</p>";  
   }
 $(".invest-trade").html(html);                              // Вывод столбца Вложил
-
 $(".time-trade").html(coinTradeOutput("time"));             // Вывод столбца даты
 $(".type-trade").html(coinTradeOutput("type"));             // Вывод столбца даты
 $(".target-trade").html(coinTradeOutput("target"));         // Вывод какую монету купил\продал
@@ -217,7 +223,7 @@ if (resultTrade > 0) {
     $(".profit-result").html("ТУТ ПРОЕБ !! <br>");
         };
 $(".result-trade-fiat").html("Если все продать сейчас: " + resultTradeFiat.replace(/(\d)(?=(\d\d\d)+([^\d]|$))/g, '$1 ') + " руб.<br>");
-});
+}); // конец функции AJAX
 
 // ------------ Вывод статичных данных майнинга с объекта coinMining
 $(".xmr-bittrex-mining").html(coinMining.bittrex.xmr);  
