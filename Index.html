@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <meta http-equiv="Refresh" content="300" />  <!-- Обновление страницы каждые 5 минут-->
+   <!--  <meta http-equiv="Refresh" content="300" />  Обновление страницы каждые 5 минут-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="myStyle.css" type="text/css"/>
@@ -50,16 +50,44 @@
                                 <div class="row">
                                     <hr>
                                     <!-- <div class="col-xs-1 exchange-trade">Биржа</div>        на какой Бирже была сделка-->                                
-                                    <div class="col-xs-2 time-trade"><strong>Дата</strong></div>           <!-- время сделки-->
-                                    <div class="col-xs-1 type-trade"><strong>Сделка</strong></div>           <!-- вид (купил\продал) сделки-->
-                                    <div class="col-xs-1 target-trade"><strong>Монета</strong></div>         <!-- какую именно монету-->
-                                    <div class="col-xs-2 invest-trade"><strong>Вложил</strong></div>
-                                    <div class="col-xs-2 sum-trade"><strong>Кол-во</strong></div>            <!-- кол-во этой монеты-->
+                                    <div class="col-xs-2">
+                                        <strong>Дата</strong>
+                                        <hr>
+                                        <div class="time-trade"></div>
+                                    </div>            <!-- время сделки-->
+                                    <div class="col-xs-1">
+                                        <strong>Сделка</strong>
+                                        <hr>
+                                        <div class="type-trade"></div>
+                                    </div>           <!-- вид (купил\продал) сделки-->
+                                    <div class="col-xs-1">
+                                        <strong>Монета</strong>
+                                        <hr>
+                                        <div class="target-trade"></div>
+                                    </div>         <!-- какую именно монету-->
+                                    <div class="col-xs-2">
+                                        <strong>Вложил</strong>
+                                        <hr>
+                                        <div class="invest-trade"></div>
+                                    </div>
+                                    <div class="col-xs-2">
+                                        <strong>Кол-во</strong>
+                                        <hr>
+                                        <div class="sum-trade"></div>
+                                    </div>            <!-- кол-во этой монеты-->
                                     <!-- <div class="col-xs-1 rurUsd-trade">Курс $</div>         курс $ к рублю на тот момент-->
-                                    <div class="col-xs-2 priceUsd-trade"><strong>Курс в $</strong></div>      <!-- цена этой монеты на тот момент $(в сумме всех моент в $)-->
+                                    <div class="col-xs-2">
+                                        <strong>Курс в $</strong>
+                                        <hr>
+                                        <div class="priceUsd-trade"></div>
+                                    </div>      <!-- цена этой монеты на тот момент $(в сумме всех моент в $)-->
                                     <!-- <div class="col-xs-1 fee-trade">Fee $</div>             комиссия сделки в монетах (в $)-->
                                     <!-- <div class="col-xs-1 state-trade">STATE</div>           состояние сделки закрытая\открытая-->
-                                    <div class="col-xs-2 profit-trade"><strong>Прибыль</strong></div>         <!-- выгода сделки в реальный момент времени в руб.)(в %))-->
+                                    <div class="col-xs-2">
+                                        <strong>Прибыль</strong>
+                                        <hr>
+                                        <div class="profit-trade"></div>
+                                    </div>         <!-- выгода сделки в реальный момент времени в руб.)(в %))-->
                                 </div>
                                 <hr>
                                 <h3>Итоги по торгам</h3>
