@@ -25,14 +25,14 @@ var coinMining = {
     zcl: 0
   },
   poloniex: {
-    xmr: 0, 
+    xmr: 0,
     zec: 0,  
     dgb: 0,
     lbc: 0,
     zcl: 0
   },
   mpoolhub: {
-    xmr: 0.77315377, 
+    xmr: 0.80092579, 
     zec: 0,  
     dgb: 0,
     lbc: 0,
@@ -42,11 +42,11 @@ var coinMining = {
     xmr: 0.03370000, 
     zec: 0,  
     dgb: 0,
-    lbc: 86.5692,
+    lbc: 233.1334,
     zcl: 1.6631
   },
   fiat: 6652.93,
-  dateIns: "30.11.2017 16:30"
+  dateIns: "05.12.2017 15:45"
 };
 
 // ------------ Объект хранящий данные по сделкам на трейде
@@ -189,11 +189,11 @@ $(".result-trade-fiat").html("Если все продать сейчас: " + r
 }); // конец функции AJAX
 }; // конец функции Polo
 //_______________________________________________________________________________ JSON запрос данных по крипте c coinmarketcap
-$.getJSON("https://api.coinmarketcap.com/v1/ticker/?limit=400", function(json) {
+$.getJSON("https://api.coinmarketcap.com/v1/ticker/?limit=450", function(json) {
   var html = "";
   var marketCap = "";                               // Переменная для разбиения на разряды большого числа
   secUpdateGL = json[0].last_updated;
-  for (var i = 0; i < 505; i++) {                   // 400 первых самых инвестированных криптовалют мира
+  for (var i = 0; i < 450; i++) {                   // 400 первых самых инвестированных криптовалют мира
     switch (json[i].symbol) {
       case "BTC":
       case "ETH":
