@@ -32,6 +32,10 @@
                     <div class="monero left"><img src="img/monero.png"></div>   
                     <div class="monero right"></div>            
                 </div>
+                <div class="coin">
+                    <div class="zcash left"><img src="img/zcash.png"></div>  
+                    <div class="zcash right"></div>  
+                </div>                
             </div>
             <div class="col-xs-6">                  <!-- _________________________Середина страницы, майнинг и биржи-->
                 <div class="time"></div>
@@ -50,16 +54,11 @@
                                 <div class="row">
                                     <hr>
                                     <!-- <div class="col-xs-1 exchange-trade">Биржа</div>        на какой Бирже была сделка-->                                
-                                    <div class="col-xs-2">
+                                    <div class="col-xs-1">
                                         <strong>Дата</strong>
                                         <hr>
                                         <div class="time-trade"></div>
                                     </div>            <!-- время сделки-->
-                                    <div class="col-xs-1">
-                                        <strong>Сделка</strong>
-                                        <hr>
-                                        <div class="type-trade"></div>
-                                    </div>           <!-- вид (купил\продал) сделки-->
                                     <div class="col-xs-1">
                                         <strong>Монета</strong>
                                         <hr>
@@ -77,10 +76,15 @@
                                     </div>            <!-- кол-во этой монеты-->
                                     <!-- <div class="col-xs-1 rurUsd-trade">Курс $</div>         курс $ к рублю на тот момент-->
                                     <div class="col-xs-2">
-                                        <strong>Курс в $</strong>
+                                        <strong>Курс-купил, $</strong>
                                         <hr>
                                         <div class="priceUsd-trade"></div>
                                     </div>      <!-- цена этой монеты на тот момент $(в сумме всех моент в $)-->
+                                    <div class="col-xs-2">
+                                        <strong>Курс-сейчас, $</strong>
+                                        <hr>
+                                        <div class="realPriceUsd-trade"></div>
+                                    </div>      <!-- цена этой монеты на тот момент $(в сумме всех моент в $)-->                                    
                                     <!-- <div class="col-xs-1 fee-trade">Fee $</div>             комиссия сделки в монетах (в $)-->
                                     <!-- <div class="col-xs-1 state-trade">STATE</div>           состояние сделки закрытая\открытая-->
                                     <div class="col-xs-2">
@@ -171,8 +175,8 @@
 <!-- _____________________________________________________________ Правый столбец данных о крипте-->
             <div class="col-xs-3">
                 <div class="coin">
-                    <div class="zcash left"><img src="img/zcash.png"></div>  
-                    <div class="zcash right"></div>  
+                    <div class="nxt left"><img src="img/nxt.png"></div>
+                    <div class="nxt right"></div>
                 </div>
                 <div class="coin">
                     <div class="digibyte left"><img src="img/digibyte.png"></div>
