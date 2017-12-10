@@ -57,9 +57,9 @@ var coinMining = {
 
 // ------------ Объект хранящий данные по сделкам на трейде
 var coinTrade = { 
-  deal_1: {exchange: "Poloniex", time: "10.12.2017", type: "BUY",  target: "NXT", sum: 2408.727714,   rurUsd: 59.2,  priceUsd: 0.549333},
-  deal_2: {exchange: "Poloniex", time: "30.11.2017", type: "BUY",  target: "XRP", sum: 4332.336211,   rurUsd: 58.4,  priceUsd: 0.24455311},
-  deal_3: {exchange: "Poloniex", time: "06.12.2017", type: "BUY",  target: "XRP", sum: 4526.03344778, rurUsd: 58.7,  priceUsd: 0.2078733}
+  deal_1: {exchange: "Poloniex", time: "10.12.2017", type: "BUY",  target: "NXT", sum: 2408.727714, rurUsd: 59.28,  priceUsd: 0.549333},
+  deal_2: {exchange: "Poloniex", time: "30.11.2017", type: "BUY",  target: "XRP", sum: 4332.336211, rurUsd: 58.4,  priceUsd: 0.24455311},
+  deal_3: {exchange: "Poloniex", time: "10.12.2017", type: "BUY",  target: "NXT", sum: 2001.648454, rurUsd: 59.28,  priceUsd: 0.50723247}
 };
 // ------------ Переменные для сокращения записи в выводе расчетных данных таблицы майнинга
 var xmrTotal = (coinMining.bittrex.xmr + coinMining.poloniex.xmr + coinMining.mpoolhub.xmr + coinMining.suprnova.xmr).toFixed(8);
@@ -187,22 +187,22 @@ $(".priceUsd-trade").html(coinTradeOutput("priceUsd"));     // Вывод цен
 html = '';
 html += "<p class='deal_1'>" + (nxtUsd / 1).toFixed(4) + " (" + (100 - coinTrade.deal_1.priceUsd / nxtUsd * 100).toFixed(2) + " %)</p><br>";
 html += "<p class='deal_2'>" + (xrpUsd / 1).toFixed(4) + " (" + (100 - coinTrade.deal_2.priceUsd / xrpUsd * 100).toFixed(2) + " %)</p><br>";
-html += "<p class='deal_3'>" + (xrpUsd / 1).toFixed(4) + " (" + (100 - coinTrade.deal_3.priceUsd / xrpUsd * 100).toFixed(2) + " %)</p><br>";
+html += "<p class='deal_3'>" + (nxtUsd / 1).toFixed(4) + " (" + (100 - coinTrade.deal_3.priceUsd / nxtUsd * 100).toFixed(2) + " %)</p><br>";
 $(".realPriceUsd-trade").html(html);
 html = '';
 html += "<p class='deal_1'>" + ((nxtUsd * coinTrade.deal_1.sum) - (coinTrade.deal_1.priceUsd * coinTrade.deal_1.sum)).toFixed(2) + "$ (" +
         (((nxtUsd * coinTrade.deal_1.sum) - (coinTrade.deal_1.priceUsd * coinTrade.deal_1.sum)) * rur_usd).toFixed(0) + ")</p><br>";
 html += "<p class='deal_2'>" + ((xrpUsd * coinTrade.deal_2.sum) - (coinTrade.deal_2.priceUsd * coinTrade.deal_2.sum)).toFixed(2) + "$ (" +
         (((xrpUsd * coinTrade.deal_2.sum) - (coinTrade.deal_2.priceUsd * coinTrade.deal_2.sum)) * rur_usd).toFixed(0) + ")</p><br>";
-html += "<p class='deal_3'>" + ((xrpUsd * coinTrade.deal_3.sum) - (coinTrade.deal_3.priceUsd * coinTrade.deal_3.sum)).toFixed(2) + "$ (" +
-        (((xrpUsd * coinTrade.deal_3.sum) - (coinTrade.deal_3.priceUsd * coinTrade.deal_3.sum)) * rur_usd).toFixed(0) + ")</p><br>";
+html += "<p class='deal_3'>" + ((nxtUsd * coinTrade.deal_3.sum) - (coinTrade.deal_3.priceUsd * coinTrade.deal_3.sum)).toFixed(2) + "$ (" +
+        (((nxtUsd * coinTrade.deal_3.sum) - (coinTrade.deal_3.priceUsd * coinTrade.deal_3.sum)) * rur_usd).toFixed(0) + ")</p><br>";
 $(".profit-trade").html(html);
 
 // ------------ Вывод расчетных данных по итогам  трейдинга
 var resultTrade = ((((nxtUsd * coinTrade.deal_1.sum) - (coinTrade.deal_1.priceUsd * coinTrade.deal_1.sum)) +
  ((xrpUsd * coinTrade.deal_2.sum) - (coinTrade.deal_2.priceUsd * coinTrade.deal_2.sum)) +
- ((xrpUsd * coinTrade.deal_3.sum) - (coinTrade.deal_3.priceUsd * coinTrade.deal_3.sum))) * rur_usd).toFixed(2);
-var resultTradeFiat = ((ethUsd * coinTrade.deal_1.sum + xrpUsd * coinTrade.deal_2.sum + xrpUsd * coinTrade.deal_3.sum) * rur_usd).toFixed(2);
+ ((nxtUsd * coinTrade.deal_3.sum) - (coinTrade.deal_3.priceUsd * coinTrade.deal_3.sum))) * rur_usd).toFixed(2);
+var resultTradeFiat = ((nxtUsd * coinTrade.deal_1.sum + xrpUsd * coinTrade.deal_2.sum + nxtUsd * coinTrade.deal_3.sum) * rur_usd).toFixed(2);
 if (resultTrade > 0) {
   $(".profit-result").html(resultTrade.replace(/(\d)(?=(\d\d\d)+([^\d]|$))/g, '$1 ') + " руб.<br>");
   $(".fail-result").html("ВСЕ ЗАЕБЦА!! <br>");  
